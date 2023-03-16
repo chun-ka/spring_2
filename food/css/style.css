@@ -248,7 +248,8 @@ a:focus {
 }
 
 .user_option .order_online:hover {
-  background-color: #e69c00;
+  background-color: white;
+  color: black;
 }
 
 .custom_nav-container .navbar-toggler {

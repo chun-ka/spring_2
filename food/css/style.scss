@@ -468,6 +468,28 @@ a:focus {
 
 // food section
 
+
+  .filters_menu {
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    list-style-type: none;
+    margin: 45px 0 20px 0;
+
+    li {
+      padding: 7px 25px;
+      cursor: pointer;
+      border-radius: 25px;
+
+      &.active {
+        background-color: $primary2;
+        color: $white;
+      }
+    }
+  }
+
+
 .food_section {
 
   .filters_menu {
@@ -573,6 +595,8 @@ a:focus {
     }
   }
 }
+
+
 
 // end food section
 
@@ -742,8 +766,8 @@ a:focus {
 
       .owl-prev,
       .owl-next {
-        width: 45px;
-        height: 45px;
+        width: 30px;
+        height: 30px;
         background-color: $primary1;
         color: $white;
         outline: none;
