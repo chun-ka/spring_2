@@ -26,7 +26,7 @@ import java.util.Set;
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Long idUser;
     @Column(columnDefinition = "varchar(45)",unique = true)
     private String username;
     @JsonIgnore
@@ -36,7 +36,7 @@ public class User {
     private String phoneNumber;
     private String name;
     @Column(columnDefinition = "bit default 1")
-    private boolean flag;
+    private boolean flagUser;
 //    @OneToOne(mappedBy = "account")
 //    @JsonBackReference
 //    private Teacher teacher;

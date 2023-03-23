@@ -8,4 +8,5 @@ export interface Food {
   size?:Size;
   category?:Category;
   price?:number;
+  promotion?:number;
 }

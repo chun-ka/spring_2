@@ -8,7 +8,9 @@ import {BodyComponent} from './body/body.component';
 import { MenuComponent } from './menu/menu.component';
 import { AboutComponent } from './about/about.component';
 import { ContactComponent } from './contact/contact.component';
-import {ReactiveFormsModule} from '@angular/forms';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import {CarouselModule} from 'ngx-owl-carousel-o';
+import {AdminModule} from '../admin/admin.module';
 
 
 @NgModule({
@@ -18,20 +20,24 @@ import {ReactiveFormsModule} from '@angular/forms';
     BodyComponent,
     MenuComponent,
     AboutComponent,
-    ContactComponent
+    ContactComponent,
   ],
   exports: [
     FooterComponent,
     HeaderComponent,
     BodyComponent,
     AboutComponent,
-    MenuComponent
+    MenuComponent,
+
 
   ],
     imports: [
         CommonModule,
         HomeRoutingModule,
-        ReactiveFormsModule
+        ReactiveFormsModule,
+        CarouselModule,
+        FormsModule,
+        AdminModule
     ]
 })
 export class HomeModule { }

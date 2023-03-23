@@ -164,6 +164,9 @@ a:focus {
 .custom_nav-container .navbar-nav {
   padding-left: 18%;
 }
+.custom_nav-container .navbar-navAdmin {
+  padding-left: 0%;
+}
 
 .custom_nav-container .navbar-nav .nav-item .nav-link {
   padding: 5px 20px;
@@ -490,6 +493,7 @@ a:focus {
   margin: 45px 0 20px 0;
 }
 
+
 .food_section .filters_menu li {
   padding: 7px 25px;
   cursor: pointer;
@@ -527,6 +531,7 @@ a:focus {
   border-radius: 0 0 0 45px;
   margin: -1px;
   padding: 25px;
+  cursor: pointer;
 }
 
 .food_section .box .img-box img {
@@ -1042,6 +1047,10 @@ a:focus {
     margin-right: 0;
     margin-bottom: 15px;
   }
+}
+
+.bodyImg{
+  cursor: pointer;
 }
 
 @media (max-width: 767px) {
@@ -7012,6 +7021,7 @@ a.close.disabled {
 @media (min-width: 576px) {
   .modal-dialog {
     max-width: 500px;
+    height: 500px;
     margin: 1.75rem auto;
   }
   .modal-dialog-scrollable {
@@ -11329,4 +11339,22 @@ h1{
 
 .cart p{
   font-weight: normal;
+}
+
+@import "~bootstrap/dist/css/bootstrap.css";
+
+.food-pagination{
+  background-color: white;
+  border: none;
+  margin-top:130px;
+  color: #222831;
+}
+
+.food-pagination :hover{
+  color: black;
+}
+
+
+.food_section .filters_menu  :hover{
+  color: #ffbe33;
 }

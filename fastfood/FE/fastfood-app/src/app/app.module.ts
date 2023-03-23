@@ -7,9 +7,12 @@ import {HomeModule} from './home/home.module';
 import {CartModule} from './cart/cart.module';
 import {FoodModule} from './food/food.module';
 import {OrderModule} from './order/order.module';
-import {SecurityModule} from './security/service/security.module';
+import {SecurityModule} from './security/security.module';
 import {HttpClientModule} from '@angular/common/http';
 import {CustomerModule} from './customer/customer.module';
+import {CarouselModule} from 'ngx-owl-carousel-o';
+import { ProductComponent } from './admin/product/product.component';
+import {AdminModule} from './admin/admin.module';
 
 @NgModule({
   declarations: [
@@ -24,7 +27,10 @@ import {CustomerModule} from './customer/customer.module';
     OrderModule,
     SecurityModule,
     HttpClientModule,
-    CustomerModule
+    CustomerModule,
+    CarouselModule,
+    AdminModule
+
   ],
   providers: [],
   bootstrap: [AppComponent]

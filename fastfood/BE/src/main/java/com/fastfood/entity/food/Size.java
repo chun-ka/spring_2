@@ -18,6 +18,6 @@ import javax.persistence.Id;
 public class Size {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private int idSize;
     private String name;
 }

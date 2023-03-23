@@ -16,7 +16,7 @@ import javax.persistence.*;
 public class Food {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Long idFood;
     private String name;
     private String img;
     private int price;
@@ -24,6 +24,8 @@ public class Food {
     private Category category;
     @ManyToOne
     private Size size;
+    private int promotion;
+
     @Column(columnDefinition = "bit default 1")
-    private boolean flag;
+    private boolean flagFood;
 }

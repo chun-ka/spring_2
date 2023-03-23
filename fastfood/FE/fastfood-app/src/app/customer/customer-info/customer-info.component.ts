@@ -4,6 +4,8 @@ import {LoginService} from '../../security/service/login.service';
 import {TokenService} from '../../security/service/token.service';
 import {Router} from '@angular/router';
 import {ShareService} from '../../security/service/share.service';
+import {Title} from '@angular/platform-browser';
+import {HeaderComponent} from '../../home/header/header.component';
 
 @Component({
   selector: 'app-user-info',
@@ -16,34 +18,38 @@ export class CustomerInfoComponent implements OnInit {
   role = 'none';
   name: string | undefined = 'Đăng nhập'
   isLogged = false;
-  constructor(private login:LoginService,private token: TokenService,private router: Router,private share: ShareService) {
+  constructor(private login:LoginService,private token: TokenService,private router: Router,private share: ShareService,private title:Title) {
   }
 
 
   ngOnInit(): void {
+    this.title.setTitle('Trang cá nhân')
     this.loader();
-    this.share.getClickEvent().subscribe(() => {
+    console.log(123);
+    this.share.getClickEvent().subscribe(data=>{
       this.loader();
+      console.log('data'+data);
     })
   }
 
   loader() {
     this.isLogged = this.token.isLogger()
     if (this.isLogged) {
+      console.log(this.isLogged);
       // @ts-ignore
       this.login.profile(this.token.getUsername()).subscribe(next => {
         this.user = next;
+        console.log(next);
         this.name = this.user.name;
       })
       this.role = this.token.getRole();
     }
   }
   logout() {
-    this.role = 'none';
-    this.name = 'Đăng nhập';
-    this.isLogged = true;
     this.token.logout();
+    this.title.setTitle('Trang chủ');
     this.router.navigateByUrl('/');
+    location.href=('/');
   }
 
 

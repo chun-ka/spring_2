@@ -4,7 +4,7 @@ import {FoodListComponent} from './food-list/food-list.component';
 
 const routes: Routes = [{
   path:'',children:[
-    {path:'menu',component:FoodListComponent}
+    {path:'menu/:name',component:FoodListComponent}
   ]
 }];
 

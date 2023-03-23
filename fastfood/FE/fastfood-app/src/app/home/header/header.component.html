@@ -1,4 +1,4 @@
-<div class="sub_page">
+<div class="sub_page" (change)="isLogged">
   <div class="hero_area">
     <div class="bg-box">
       <img src="assets/images/hero-bg.jpg" alt="">
@@ -20,26 +20,42 @@
           </button>
 
           <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav  mx-auto ">
-              <li class="nav-item active">
-                <a class="nav-link" routerLink="/">Trang chủ <span class="sr-only">(current)</span></a>
+            <ul class="navbar-nav  mx-auto " *ngIf="role != 'ROLE_ADMIN';else elseAdmin">
+              <li class="nav-item ">
+                <a class="nav-link" routerLink="/" (click)="home()">Trang chủ <span class="sr-only">(current)</span></a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" routerLink="/menu">Menu</a>
+                <a class="nav-link" routerLink="/menu/:name" (click)="menu()">Menu</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" routerLink="/about">Giới thiệu</a>
+                <a class="nav-link" routerLink="/about" (click)="about()">Giới thiệu</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" routerLink="/contact">Liên hệ</a>
+                <a class="nav-link" routerLink="/contact" (click)="contact()">Liên hệ</a>
               </li>
             </ul>
+            <ng-template #elseAdmin>
+              <ul class="navbar-nav navbar-navAdmin mx-auto " style="margin-right: 100px">
+                <li class="nav-item ">
+                  <a class="nav-link" routerLink="/productAdmin" >Sản phẩm <span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" routerLink="/categoryAdmin" >Danh mục</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" routerLink="/revenueAdmin">Doanh thu</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" routerLink="/historyAdmin" >Lịch sử</a>
+                </li>
+              </ul>
+            </ng-template>
             <div class="user_option">
 
-              <form class="form-inline">
-                <input class="order_online" type="search">
+              <form class="form-inline" *ngIf="role != 'ROLE_ADMIN'">
+                <input class="order_online" type="search" placeholder="Tên món ăn" #search value="">
 
-                <button class="btn  my-2 my-sm-0 nav_search-btn" type="submit">
+                <button class="btn  my-2 my-sm-0 nav_search-btn" type="submit" (click)="searchByName(search.value)" >
                   <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                        class="bi bi-search" viewBox="0 0 16 16">
                     <path
@@ -47,7 +63,7 @@
                   </svg>
                 </button>
               </form>
-              <a class="cart_link" routerLink="/cart">
+              <a class="cart_link" routerLink="/cart" *ngIf="role != 'ROLE_ADMIN'">
                 <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px"
                      viewBox="0 0 456.029 456.029" style="enable-background:new 0 0 456.029 456.029;"
                      xml:space="preserve">
@@ -78,9 +94,9 @@
               </a>
 
               <a href="#" class="user_link" style="text-decoration: none" data-bs-toggle="modal"
-                 data-bs-target="#login" *ngIf="this.islogged==false">Đăng nhập</a>
+                 data-bs-target="#login" *ngIf="this.isLogged==false">Đăng nhập</a>
 
-              <a routerLink="/customer" class="user_link" *ngIf="this.islogged==true">
+              <a routerLink="/customer" class="user_link" *ngIf="this.isLogged==true" >
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                      class="bi bi-person-circle" viewBox="0 0 16 16" style="margin-bottom: 3px">
                   <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z"/>
@@ -122,8 +138,12 @@
                 <label for="password">Mật khẩu</label>
                 <input type="password" id="password" class="form-control" formControlName="password">
               </div>
+              <div class="mb-3 mt-3">
+                <input type="checkbox" id="rememberMe"  formControlName="rememberMe">
+                <label for="rememberMe" style="margin-left: 10px">  Ghi nhớ đăng nhập</label>
+              </div>
               <button type="submit" class="btn btn-light mt-3" data-bs-dismiss="modal">Đăng nhập</button>
-              <p>Chưa có tài khoản? <a class="sign" type="button" data-bs-toggle="modal" data-bs-target="#sign-in">Đăng
+              <p style="color: white">Chưa có tài khoản? <a class="sign" type="button" data-bs-toggle="modal" data-bs-target="#sign-in">Đăng
                 kí</a></p>
             </form>
           </div>
@@ -132,6 +152,7 @@
     </div>
   </div>
 </div>
+
 
 <!--sing-in modal-->
 <div class="login">
@@ -170,3 +191,5 @@
     </div>
   </div>
 </div>
+
+

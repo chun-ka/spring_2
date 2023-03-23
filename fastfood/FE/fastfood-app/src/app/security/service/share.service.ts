@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import {Observable, Subject} from "rxjs";
+import {BehaviorSubject, Observable, Subject} from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -8,6 +8,7 @@ export class ShareService {
 
   constructor() {}
   private subject = new Subject<any>();
+  private behaviorSubject=new BehaviorSubject('')
 
   sendClickEvent() {
     this.subject.next();

@@ -21,7 +21,7 @@ const CART = 'Cart_key';
 })
 export class TokenService {
   json = '';
-  cart: Cart[] = [];
+  // cart: Cart[] = [];
 
   constructor() {
   }
@@ -38,7 +38,7 @@ export class TokenService {
   }
 
   public getStorage() {
-    this.setCart(this.cart);
+    // this.setCart(this.cart);
     if (localStorage.getItem(STORAGE) == 'local' || sessionStorage.getItem(STORAGE) == 'local') {
       return localStorage.getItem(STORAGE);
     } else {
@@ -46,44 +46,44 @@ export class TokenService {
     }
   }
 
-  public setCart(cart: Cart[]) {
-    sessionStorage.removeItem(CART);
-    sessionStorage.setItem(CART, JSON.stringify(cart));
-  }
+  // public setCart(cart: Cart[]) {
+  //   sessionStorage.removeItem(CART);
+  //   sessionStorage.setItem(CART, JSON.stringify(cart));
+  // }
 
-  public upQuantity(id: number, carts: Cart[]) {
-    for (let i = 0; i < carts.length; i++) {
-      if (carts[i].id == id) {
-        // @ts-ignore
-        carts[i].quantity += 1;
-        break;
-      }
-    }
-  }
+  // public upQuantity(id: number, carts: Cart[]) {
+  //   for (let i = 0; i < carts.length; i++) {
+  //     if (carts[i].id == id) {
+  //       // @ts-ignore
+  //       carts[i].quantity += 1;
+  //       break;
+  //     }
+  //   }
+  // }
 
-  public checkExist(name: string) {
-    console.log(name);
-    // let cart = this.getCart();
-    for (let i = 0; i < this.getCart().length; i++) {
-      if (this.getCart()[i].name == name) {
-        return true;
-      }
-    }
-    return false;
-  }
+  // public checkExist(name: string) {
+  //   console.log(name);
+  //   // let cart = this.getCart();
+  //   for (let i = 0; i < this.getCart().length; i++) {
+  //     if (this.getCart()[i].name == name) {
+  //       return true;
+  //     }
+  //   }
+  //   return false;
+  // }
 
-  public getCart() {
-    const carts = sessionStorage.getItem(CART);
-    if (carts == 'undefined') {
-      return this.cart;
-    } else {
-      // @ts-ignore
-      this.cart = JSON.parse(carts);
-      return this.cart;
-    }
-
-
-  }
+  // public getCart() {
+  //   const carts = sessionStorage.getItem(CART);
+  //   if (carts == 'undefined') {
+  //     return this.cart;
+  //   } else {
+  //     // @ts-ignore
+  //     this.cart = JSON.parse(carts);
+  //     return this.cart;
+  //   }
+  //
+  //
+  // }
 
   public setToken(token: string) {
     if (this.getStorage() == 'local') {

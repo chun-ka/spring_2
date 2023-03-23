@@ -16,9 +16,9 @@ import javax.persistence.*;
 public class OrderHistory {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Long idOrderHistory;
     @Column(columnDefinition = "bit default 1")
-    private boolean flag;
+    private boolean flagOrderHistory;
     private int quantity;
     @ManyToOne
     private Food food;
