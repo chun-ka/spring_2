@@ -1,2 +1,214 @@
-<p style="color: red">Đây là trang sản phẩm</p>
+<div class="container-fluid" style="height: 88vh;background-color:aliceblue ">
+  <div class="row">
+    <div class="col-lg-3 col-sm-3">
+      <div class="admin">
+        <button class="product" (click)="titleList()"><span>Danh sách sản phẩm</span></button>
+        <button class="product" (click)="titleCreate()"><span>Thêm mới sản phẩm</span></button>
+        <button class="product" (click)="titleEdit()"><span>Chỉnh sửa sản phẩm</span></button>
+        <button class="product" (click)="titleDelete()"><span>Xóa sản phẩm</span></button>
+      </div>
+    </div>
+    <div class="col-lg-7 col-sm-7" *ngIf="this.titleProduct=='titleList'" style="margin-top: 50px">
+      <div style="background-color: white;margin-top: 0px;border-radius: 15px">
+        <div style="padding: 15px;">
+          <h3 style="text-align: center;margin-top: 10px">Danh sách sản phẩm</h3>
+          <div class="row">
+            <div class="col-8"></div>
+            <div class="col-2" style="float: right;">
+              <select class="form-select" #searchCategory>
+                <option value="">Tất cả</option>
+                <option *ngFor="let c of categorys" [value]="c.idCategory">{{c.name}}</option>
+              </select>
+            </div>
+
+            <div class="col-2" style="float: right;">
+              <button class="btn btn-primary" (click)="search(searchCategory.value)">Tìm</button>
+            </div>
+          </div>
+          <table class="table " style="margin-top: 20px">
+            <thead class="table-dark">
+            <tr>
+              <th scope="col">STT</th>
+              <th scope="col">Tên sản phẩm</th>
+              <th scope="col">Giá</th>
+              <th scope="col">Loại sản phẩm</th>
+              <th scope="col">Giảm giá</th>
+            </tr>
+            </thead>
+            <tbody class="changeColor">
+            <tr *ngFor="let f of foods,index as i" (click)="getIdClick(f)">
+              <th scope="row">{{i + 1}}</th>
+              <td>{{f.name}}</td>
+              <td>{{f.price}}</td>
+              <td>{{f.category?.name}}</td>
+              <td>{{f.promotion}}%</td>
+            </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <div style="margin-top: 10px">
+        <div *ngIf="foodPage" class="d-flex justify-content-center" id="last-row">
+          <nav aria-label="Page navigation example">
+            <ul class="pagination">
+              <li class="page-item" [ngClass]="foodPage.first ? 'disabled': ''">
+                <a role="button" class="page-link" (click)="changePage(0)">Trang đầu</a>
+              </li>
+              <li class="page-item" [ngClass]="foodPage.first ? 'disabled': ''">
+                <a role="button" class="page-link" (click)="changePage(foodPage.number - 1)"><</a>
+              </li>
+              <li class="page-item" *ngIf="foodPage.number - 3 > 0">
+                <a role="button" class="page-link"
+                   (click)="changePage(foodPage.number - 4)">{{foodPage.number - 3}}</a>
+              </li>
+              <li class="page-item" *ngIf="foodPage.number - 2 > 0">
+                <a role="button" class="page-link"
+                   (click)="changePage(foodPage.number - 3)">{{foodPage.number - 2}}</a>
+              </li>
+              <li class="page-item" *ngIf="foodPage.number - 1 > 0">
+                <a role="button" class="page-link"
+                   (click)="changePage(foodPage.number - 2)">{{foodPage.number - 1}}</a>
+              </li>
+              <li class="page-item" *ngIf="foodPage.number > 0">
+                <a role="button" class="page-link"
+                   (click)="changePage(foodPage.number - 1)">{{foodPage.number}}</a>
+              </li>
+              <li class="page-item active"><a class="page-link">{{foodPage.number + 1}}</a></li>
+              <li class="page-item" *ngIf="foodPage.number + 2 <= foodPage.totalPages">
+                <a role="button" class="page-link"
+                   (click)="changePage(foodPage.number + 1)">{{foodPage.number + 2}}</a>
+              </li>
+              <li class="page-item" *ngIf="foodPage.number + 3 <= foodPage.totalPages">
+                <a role="button" class="page-link"
+                   (click)="changePage(foodPage.number + 2)">{{foodPage.number + 3}}</a>
+              </li>
+              <li class="page-item" *ngIf="foodPage.number + 4 <= foodPage.totalPages">
+                <a role="button" class="page-link"
+                   (click)="changePage(foodPage.number + 3)">{{foodPage.number + 4}}</a>
+              </li>
+              <li class="page-item" *ngIf="foodPage.number + 5 <= foodPage.totalPages">
+                <a role="button" class="page-link"
+                   (click)="changePage(foodPage.number + 4)">{{foodPage.number + 5}}</a>
+              </li>
+              <li class="page-item" [ngClass]="foodPage.last ? 'disabled': ''">
+                <a role="button" class="page-link"
+                   (click)="changePage(foodPage.number + 1)">></a>
+              </li>
+              <li class="page-item" [ngClass]="foodPage.last ? 'disabled': ''">
+                <a role="button" class="page-link"
+                   (click)="changePage(foodPage.totalPages - 1)">
+                  Trang cuối
+                </a>
+              </li>
+            </ul>
+          </nav>
+        </div>
+      </div>
+    </div>
+    <div class="col-lg-7 col-sm-7" *ngIf="this.titleProduct=='titleCreate'" style="margin-top: 50px">
+      <div style="background-color: white;margin-top: 0px;border-radius: 15px">
+        <div style="padding: 15px;">
+          <h3 style="text-align: center;margin-top: 10px">Thêm mới sản phẩm</h3>
+          <form [formGroup]="productForm" (ngSubmit)="create()">
+            <div class="row" style="padding:40px 10px 20px 10px">
+              <div class="col-lg-6 col-sm-6" style="text-align: center;">
+                <div class="swiper-slide">
+                  <input formControlName="idFood" hidden>
+                  <img src="assets/images/o1.jpg" style="border-radius: 10px;width: 350px;height: 350px"></div>
+                <input formControlName="img" hidden>
+                <button class="btn btn-warning" style="margin-top: 15px" value="Chọn ảnh" type="button">Chọn ảnh
+                </button>
+
+              </div>
+              <div class="col-lg-6 col-sm-6">
+                <div style="margin-left: 20px">
+                  <div style="margin-top: 10px"><b>Tên sản phẩm:</b><input class="form-control" formControlName="name">
+                  </div>
+                  <div style="margin-top: 10px"><b>Phân loại:</b>
+                    <select class="form-select" formControlName="category">
+                      <option *ngFor="let c of categorys" [ngValue]="c">{{c.name}}</option>
+                    </select>
+                  </div>
+                  <div style="margin-top: 10px"><b>Giá:</b><input type="number" class="form-control"
+                                                                  formControlName="price"></div>
+                  <div style="margin-top: 10px"><b>Khuyến mãi:</b><input type="number" class="form-control"
+                                                                         formControlName="promotion"></div>
+                </div>
+              </div>
+            </div>
+            <div style="text-align: center;">
+              <button class="btn btn-primary" type="submit">Thêm mới</button>
+            </div>
+
+          </form>
+
+        </div>
+      </div>
+
+    </div>
+    <div class="col-lg-7 col-sm-7" *ngIf="this.titleProduct=='titleEdit'" style="margin-top: 50px">
+      <div style="background-color: white;margin-top: 0px;border-radius: 15px">
+        <div style="padding: 15px;">
+          <h3 style="text-align: center;margin-top: 10px">Chỉnh sửa sản phẩm</h3>
+          <form [formGroup]="productForm" (ngSubmit)="edit()">
+            <div class="row" style="padding:40px 10px 20px 10px">
+              <div class="col-lg-6 col-sm-6" style="text-align: center;">
+                <div class="swiper-slide">
+                  <input formControlName="idFood" hidden>
+                  <img src="assets/images/o1.jpg" style="border-radius: 10px;width: 350px;height: 350px"></div>
+                <input formControlName="img" hidden>
+                <button class="btn btn-warning" style="margin-top: 15px" value="Chọn ảnh" type="button">Chọn ảnh
+                </button>
+
+              </div>
+              <div class="col-lg-6 col-sm-6">
+                <div style="margin-left: 20px">
+                  <div style="margin-top: 10px"><b>Tên sản phẩm:</b><input class="form-control" formControlName="name">
+                  </div>
+                  <div style="margin-top: 10px"><b>Phân loại:</b>
+                    <select class="form-select" formControlName="category" [compareWith]="compareWithCategory">
+                      <option *ngFor="let c of categorys" [ngValue]="c">{{c.name}}</option>
+                    </select>
+                  </div>
+                  <div style="margin-top: 10px"><b>Giá:</b><input type="number" class="form-control"
+                                                                  formControlName="price"></div>
+                  <div style="margin-top: 10px"><b>Khuyến mãi:</b><input type="number" class="form-control"
+                                                                         formControlName="promotion"></div>
+                </div>
+              </div>
+            </div>
+            <div style="text-align: center;">
+              <button class="btn btn-primary" type="submit">Lưu</button>
+            </div>
+
+          </form>
+
+        </div>
+      </div>
+
+    </div>
+
+    <div class="col-lg-7 col-sm-7" *ngIf="this.titleProduct=='titleDelete'" style="margin-top: 50px">
+      <div class="row">
+        <div class="col-lg-2 col-sm-2"></div>
+        <div class="col-lg-7 col-sm-7">
+          <div style="background-color: white;margin-top: 0px;border-radius: 15px">
+            <div style="padding: 25px;margin-top: 100px">
+              <h3 style="text-align: center;">Xóa sản phẩm</h3>
+              <div class="row" style="padding:20px 10px 30px 10px">
+                <p>Bạn có chắc chắn muốn xóa sản phẩm : <span style="color: red;font-weight: bold">{{this.food.name}}?</span></p>
+                <p>Lưu ý : Nếu đồng ý,dữ liệu sẽ không hoàn tác lại được !</p>
+              </div>
+              <div style="text-align: center;">
+                <button class="btn btn-danger" type="submit" style="margin-right: 5px;width: 150px" (click)="delete(this.food.idFood)">Đồng ý</button>
+                <button class="btn btn-primary" type="submit" style="margin-left: 5px;width: 150px" (click)="noDelete()">Không</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
 

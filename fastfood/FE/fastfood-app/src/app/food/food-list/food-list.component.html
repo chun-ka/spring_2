@@ -12,7 +12,7 @@
 
     <div class="filters-content">
       <div class="row grid">
-        <div class="col-sm-6 col-lg-4 all pizza" *ngFor="let f of foodList">
+        <div class="col-sm-6 col-lg-4 all pizza" *ngFor="let f of foodList" style="padding-bottom: 40px">
           <div class="box">
             <div>
               <div class="img-box" (click)="infoFood(f,f.price)" data-bs-toggle="modal" data-bs-target="#foodInfo">
@@ -22,12 +22,13 @@
                 <h2 style="font-family: Dancing Script">
                   {{f.name}}
                 </h2>
-                <h6 style="font-family: Dancing Script"> Giá : {{f.price | currency:'VND':''}}đ</h6>
+<!--                <h6 *ngIf="f.promotion!=0" style="font-family: Dancing Script">-->
+<!--                  {{f.promotion}}% Off-->
+<!--                </h6>-->
                 <div class="options">
-                  <h6 style="font-family: Dancing Script">
-                    Size : {{f.size?.name}}
-                  </h6>
-                  <a href="">
+                  <h6 style="font-family: Dancing Script"> Giá : {{f.price | currency:'VND':''}}đ</h6>
+
+                  <a  (click)="addToCart(f)" style="cursor: pointer">
                     <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg"
                          xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 456.029 456.029"
                          style="enable-background:new 0 0 456.029 456.029;" xml:space="preserve">
@@ -97,7 +98,7 @@
     <!--      </a>-->
     <!--    </div>-->
   </div>
-</section>
+</section >
 
 <div class="modal " id="foodInfo" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-lg">
@@ -119,13 +120,13 @@
             <p class="category" *ngIf="food.promotion!=0"><span><b>Khuyến mãi</b></span>: {{food.promotion}}%</p>
             <p class="category"><span><b>Số lượng</b>:</span><input type="number" min="1" [(ngModel)]="this.quantity"
                                                                     style="width: 40px;margin-left: 10px" #quantityHtlm
-                                                                    (change)="totalPrice(quantityHtlm.value)"/></p>
-            <p class="category" *ngIf="this.price>food.price;else elseBlock">
+                                                                    (change)="updateQuantity($event)"/></p>
+            <p class="category" *ngIf="this.price>food.price ;else elseBlock">
               <span><b>Giá tiền</b></span>: {{this.price | currency:'VND':''}}đ</p>
             <ng-template #elseBlock>
               <p class="category"><span><b>Giá tiền</b></span>: {{this.pricePromotion | currency:'VND':''}}đ</p>
             </ng-template>
-            <button class="btn btn-warning" style="background-color:orange;height: 40px;color: white">Thêm vào giỏ hàng</button>
+            <button class="btn btn-warning" style="background-color:orange;height: 40px;color: white" (click)="addToCartDetail(food,quantityHtlm.value)" data-bs-dismiss="modal">Thêm vào giỏ hàng</button>
           </div>
         </div>
       </div>

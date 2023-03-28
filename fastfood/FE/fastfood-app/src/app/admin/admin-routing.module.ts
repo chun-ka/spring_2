@@ -7,10 +7,10 @@ import {HistoryComponent} from './history/history.component';
 
 const routes: Routes = [{
   path:'',children:[
-    {path:'productAdmin',component:ProductComponent},
-    {path:'categoryAdmin',component:CategoryComponent},
-    {path:'revenueAdmin',component:RevenueComponent},
-    {path:'historyAdmin',component:HistoryComponent},
+    {path:'admin/product',component:ProductComponent},
+    {path:'admin/category',component:CategoryComponent},
+    {path:'admin/revenue',component:RevenueComponent},
+    {path:'admin/history',component:HistoryComponent},
   ]
 }];
 

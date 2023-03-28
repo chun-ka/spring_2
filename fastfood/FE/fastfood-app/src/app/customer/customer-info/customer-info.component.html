@@ -1,19 +1,76 @@
-
-<div class="container">
-  <div class="row" style="margin-top: 100px">
-    <div class="col-lg-6 col-sm-6">
-      <div class="swiper-slide" ><img
-        src="assets/images/img.png"></div>
+<div class="container-fluid" style="height: 80vh;background-color:aliceblue ">
+  <div class="row" style="padding-top: 50px" >
+    <div class="col-lg-3 col-sm-3">
+      <div class="user">
+        <button class="info" (click)="info()"><span>Thông tin cá nhân</span></button>
+        <button class="info" (click)="edit()"><span>Chỉnh sửa thông tin</span></button>
+        <button class="info" (click)="history()" *ngIf="role == 'ROLE_USER'"><span>Lịch sử mua hàng</span></button>
+        <button class="info" (click)="logout()"><span>Đăng xuất</span></button>
+      </div>
     </div>
-    <div class="col-lg-5 col-sm-6" >
-      <p class="category"><span><b>Phân Loại</b></span>: Burger</p>
-      <p class="category"><span><b>Món ăn</b></span>: Hamburger với phô mai và khoai tây chiên</p>
-      <p class="category"><span><b>Kích thớc</b></span>: Loại lớn</p>
-      <p class="category"><span><b>Số lượng</b>:</span><input type="number" min="1" value="1" style="width: 50px;margin-left: 15px"/></p>
-      <div class="addtocart" style="background: #046056">Thêm vào giỏ hàng</div>
-      <div class="addtocart" style="background: orangered">Mua ngay</div>
-      <p><img src="https://nuochoamy.vn/images/iconnuochoa2.png" style="width: 600px" alt="Phương thức thanh toán"/></p>
-<button  class="btn btn-primary" (click)="logout()">Đăng xuất</button>
+    <div class="col-lg-7 col-sm-7" *ngIf="this.titleUser=='info'">
+      <div class="modal-dialog modal-lg">
+        <div class="modal-content" style="border-radius: 10px;border: none">
+          <div class="modal-header" style="border-bottom: 0px;padding-bottom: 0">
+            <h5 class="modal-title"></h5>
+          </div>
+          <div class="modal-body" style="padding-top: 0">
+            <h3 style="text-align: center">Thông tin cá nhân</h3>
+            <div class="row" style="padding:40px 10px">
+              <div class="col-lg-6 col-sm-6">
+                <div class="swiper-slide">
+                  <img src="{{user.avatar}}" style="border-radius: 10px;width: 350px;height: 350px"></div>
+              </div>
+              <div class="col-lg-6 col-sm-6" >
+                <div style="margin-left: 20px">
+                  <p class="category"><span><b>Tên đăng nhập</b></span>: {{user.username}} </p>
+                  <p class="category"><span><b>Họ và tên</b></span>: {{user.name}} </p>
+                <p class="category"><span><b>Số điện thoại</b></span>:  {{user.phoneNumber}}</p>
+                <p class="category"><span><b>Email</b></span>: {{user.email}}</p>
+                <p class="category"><span><b>Địa chỉ</b></span>:  {{user.address}}</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-lg-7 col-sm-7" *ngIf="this.titleUser=='edit'">
+      <div class="modal-dialog modal-lg">
+        <div class="modal-content" style="border-radius: 10px;border: none">
+          <div class="modal-header" style="border-bottom: 0px;padding-bottom: 0">
+            <h5 class="modal-title"></h5>
+          </div>
+          <div class="modal-body" style="padding-top: 0">
+            <h3 style="text-align: center">Chỉnh sửa thông tin</h3>
+            <form [formGroup]="formUser" (ngSubmit)="editUser()">
+              <div class="row" style="padding:40px 10px 20px 10px">
+                <div class="col-lg-6 col-sm-6" style="text-align: center;">
+                  <div class="swiper-slide">
+                    <input formControlName="idUser" hidden>
+                    <img src="{{user.avatar}}" style="border-radius: 10px;width: 350px;height: 350px" ></div>
+                  <button class="btn btn-warning" style="margin-top: 15px" value="Chọn ảnh" type="button" formControlName="avatar">Chọn ảnh</button>
+
+                </div>
+                <div class="col-lg-6 col-sm-6" >
+                  <div style="margin-left: 20px">
+                    <div class="category" style="margin-top: 5px"><b>Tên đăng nhập:</b><input class="form-control" formControlName="username"></div>
+                    <div class="category" style="margin-top: 5px"><b>Họ và tên:</b><input class="form-control" formControlName="name" ></div>
+                    <div class="category" style="margin-top: 5px"><b>Số điện thoại:</b><input class="form-control" formControlName="phoneNumber" ></div>
+                    <div class="category" style="margin-top: 5px"><b>Email:</b><input class="form-control" formControlName="email" ></div>
+                    <div class="category" style="margin-top: 5px"><b>Địa chỉ:</b><input class="form-control" formControlName="address" ></div>
+                  </div>
+                </div>
+              </div>
+              <div style="text-align: center;">
+                <button class="btn btn-primary" type="submit">Lưu thông tin</button>
+              </div>
+
+            </form>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </div>
+

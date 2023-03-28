@@ -31,13 +31,33 @@ public class FoodServer implements IFoodServer {
     }
 
     @Override
-    public List<Food> getListFood(int categoryId) {
-        return iFoodRepository.getListFood(categoryId);
+    public List<Food> getListFoodByCategory(String categoryId) {
+        return iFoodRepository.getListFoodByCategory(categoryId);
     }
 
     @Override
     public List<Food> getListFoodBySearch(String name) {
         return iFoodRepository.getListFoodBySearch(name);
+    }
+
+    @Override
+    public Page<Food> getPageFood(String categoryId, Pageable pageable) {
+        return iFoodRepository.getPageFood(categoryId,pageable);
+    }
+
+    @Override
+    public Food save(Food food) {
+        return iFoodRepository.save(food);
+    }
+
+    @Override
+    public Food findFoodById(Long idFood) {
+        return iFoodRepository.findById(idFood).get();
+    }
+
+    @Override
+    public void deleteFood(Long idFood) {
+        iFoodRepository.deleteFood(idFood);
     }
 
 

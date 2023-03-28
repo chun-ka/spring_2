@@ -6,6 +6,7 @@ import {ProductComponent} from './product/product.component';
 import { CategoryComponent } from './category/category.component';
 import { RevenueComponent } from './revenue/revenue.component';
 import { HistoryComponent } from './history/history.component';
+import {ReactiveFormsModule} from '@angular/forms';
 
 
 @NgModule({
@@ -20,7 +21,8 @@ import { HistoryComponent } from './history/history.component';
     ],
     imports: [
         CommonModule,
-        AdminRoutingModule
+        AdminRoutingModule,
+        ReactiveFormsModule
     ]
 })
 export class AdminModule {

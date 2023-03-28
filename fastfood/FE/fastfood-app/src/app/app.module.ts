@@ -11,8 +11,8 @@ import {SecurityModule} from './security/security.module';
 import {HttpClientModule} from '@angular/common/http';
 import {CustomerModule} from './customer/customer.module';
 import {CarouselModule} from 'ngx-owl-carousel-o';
-import { ProductComponent } from './admin/product/product.component';
 import {AdminModule} from './admin/admin.module';
+import {ReactiveFormsModule} from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -29,7 +29,8 @@ import {AdminModule} from './admin/admin.module';
     HttpClientModule,
     CustomerModule,
     CarouselModule,
-    AdminModule
+    AdminModule,
+    ReactiveFormsModule
 
   ],
   providers: [],

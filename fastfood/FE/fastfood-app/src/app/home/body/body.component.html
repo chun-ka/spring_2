@@ -1,9 +1,8 @@
+
 <div class="hero_area">
   <div class="bg-box">
     <img alt="" src="assets/images/hero-bg.jpg" style="height: 900px">
   </div>
-
-
   <section class="slider_section " style="padding: 0px">
     <div id="customCarousel1" class="carousel slide" data-ride="carousel">
       <div class="carousel-inner">
@@ -23,7 +22,7 @@
                     thưởng thức nhé!
                   </p>
                   <div class="btn-box">
-                    <a href="/menu" class="btn1" style="text-decoration: none">
+                    <a href="/menu/:name" class="btn1" style="text-decoration: none">
                       Đặt hàng ngay
                     </a>
                   </div>
@@ -36,6 +35,7 @@
     </div>
   </section>
 </div>
+
 <section class="offer_section layout_padding-bottom " style="padding-bottom: 80px;padding-top: 0px">
   <br><br>
   <div class="offer_container">
@@ -69,15 +69,14 @@
               <img src="{{f.img}}" alt="">
             </div>
             <div class="detail-box">
-              <h5>
+              <h2>
                 {{f.name}}
-              </h5>
+              </h2>
               <h6 *ngIf="f.promotion!=0">
                 {{f.promotion}}% Off
               </h6>
               <h6>Giá : {{this.pricePromotion[i] | currency:'VND':''}}đ</h6>
-              <h6>Size : {{f.size?.name}}</h6>
-              <a href="" style="text-decoration: none">
+              <a style="text-decoration: none;cursor: pointer" (click)="addToCart(f)" >
                 Đặt hàng
                 <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg"
                      xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
@@ -181,15 +180,14 @@
             <img src="{{f.img}}" alt="">
           </div>
           <div class="detail-box">
-            <h5>
+            <h2>
               {{f.name}}
-            </h5>
+            </h2>
             <h6 *ngIf="f.promotion!=0">
               {{f.promotion}}% Off
             </h6>
             <h6>Giá : {{this.priceFamous[i] | currency:'VND':''}}đ</h6>
-            <h6>Size : {{f.size?.name}}</h6>
-            <a href="" style="text-decoration: none">
+            <a  style="text-decoration: none;cursor: pointer" (click)="addToCart(f)">
               Đặt hàng
               <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg"
                    xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
@@ -743,13 +741,13 @@
             <p class="category" *ngIf="food.promotion!=0"><span><b>Khuyến mãi</b></span>: {{food.promotion}}%</p>
             <p class="category"><span><b>Số lượng</b>:</span><input type="number" min="1" [(ngModel)]="this.quantity"
                                                                     style="width: 40px;margin-left: 10px" #quantityHtlm
-                                                                    (change)="totalPrice(quantityHtlm.value)"/></p>
-            <p class="category" *ngIf="this.price>food.price;else elseBlock">
+                                                                    (change)="updateQuantity($event)" /></p>
+            <p class="category" *ngIf="this.price > food.price;else elseBlock">
               <span><b>Giá tiền</b></span>: {{this.price | currency:'VND':''}}đ</p>
             <ng-template #elseBlock>
               <p class="category"><span><b>Giá tiền</b></span>: {{this.promotionPrice | currency:'VND':''}}đ</p>
             </ng-template>
-                        <button class="btn btn-warning" style="background-color:orange;height: 40px;color: white">Thêm vào giỏ hàng</button>
+            <button class="btn btn-warning" style="background-color:orange;height: 40px;color: white" (click)="addToCartDetail(food,quantityHtlm.value)" data-bs-dismiss="modal">Thêm vào giỏ hàng</button>
           </div>
         </div>
       </div>
@@ -758,8 +756,3 @@
 </div>
 
 
-<!--<ng-template #elseAdmin>-->
-<!--  <div >-->
-<!--    <img alt="" src="https://www.pos365.vn/storage/app/media/phan-mem-quan-ly-nha-hang.jpg" style="height: 900px">-->
-<!--  </div>-->
-<!--</ng-template>-->

@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import {TokenService} from '../../security/service/token.service';
+import {any} from 'codelyzer/util/function';
 
 @Component({
   selector: 'app-footer',
@@ -7,7 +9,8 @@ import { Component, OnInit } from '@angular/core';
 })
 export class FooterComponent implements OnInit {
 
-  constructor() { }
+  constructor(private t:TokenService) {
+  }
 
   ngOnInit(): void {
   }

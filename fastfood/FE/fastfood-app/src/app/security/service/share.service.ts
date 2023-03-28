@@ -1,20 +1,25 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 import {BehaviorSubject, Observable, Subject} from 'rxjs';
+import {OrderService} from '../../order/order.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ShareService {
 
-  constructor() {}
-  private subject = new Subject<any>();
-  private behaviorSubject=new BehaviorSubject('')
+  private data = new BehaviorSubject<any>({
+    quantity: 0
+  });
 
-  sendClickEvent() {
-    this.subject.next();
+
+  getData = this.data.asObservable();
+
+  constructor() {
   }
 
-  getClickEvent(): Observable<any> {
-    return this.subject.asObservable();
+  changeData(data: any) {
+    this.data.next(data);
   }
+
+
 }

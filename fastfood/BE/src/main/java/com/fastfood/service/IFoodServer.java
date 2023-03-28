@@ -14,7 +14,16 @@ public interface IFoodServer {
 
     List<Food> getListFoodCombo();
 
-    List<Food> getListFood(int categoryId);
+    List<Food> getListFoodByCategory(String categoryId);
 
     List<Food> getListFoodBySearch(String name);
+
+    Page<Food> getPageFood(String categoryId, Pageable pageable);
+
+    Food save(Food food);
+
+    Food findFoodById(Long idFood);
+
+    void deleteFood(Long idFood);
+
 }

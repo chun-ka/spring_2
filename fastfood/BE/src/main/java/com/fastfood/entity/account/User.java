@@ -34,12 +34,11 @@ public class User {
     @Column(columnDefinition = "varchar(45)",unique = true)
     private String email;
     private String phoneNumber;
+    private String address;
     private String name;
     @Column(columnDefinition = "bit default 1")
     private boolean flagUser;
-//    @OneToOne(mappedBy = "account")
-//    @JsonBackReference
-//    private Teacher teacher;
+
     @ManyToMany(fetch = FetchType.EAGER)
     @JsonBackReference
     @JoinTable(name = "user_role", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "role_id"))

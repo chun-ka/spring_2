@@ -24,6 +24,7 @@
     "firebase": "^8.0.0",
     "ngx-owl-carousel-o": "^5.1.1",
     "rxjs": "~6.6.0",
+    "sweetalert2": "^11.7.3",
     "tslib": "^2.0.0",
     "zone.js": "~0.10.2"
   },

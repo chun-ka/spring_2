@@ -27,5 +27,5 @@ public class Food {
     private int promotion;
 
     @Column(columnDefinition = "bit default 1")
-    private boolean flagFood;
+    private boolean flagFood=true;
 }

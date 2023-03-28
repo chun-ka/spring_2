@@ -1,2 +1,119 @@
-<p style="color: red">Đây là trang danh mục</p>
+<div class="container-fluid" style="height: 88vh;background-color:aliceblue ">
+  <div class="row">
+    <div class="col-lg-3 col-sm-3">
+      <div class="admin">
+        <button class="product" style="margin-right: 0" (click)="titleList()"><span>Danh sách danh mục</span></button>
+        <button class="product" style="margin-right: 0" (click)="titleCreate()"><span>Thêm mới danh mục</span></button>
+        <button class="product" style="margin-right: 0" (click)="titleEdit()"><span>Chỉnh sửa danh mục</span></button>
+        <button class="product" style="margin-right: 0" (click)="titleDelete()"><span>Xóa danh mục</span></button>
+      </div>
+    </div>
+    <div class="col-lg-7 col-sm-7" *ngIf="this.titleCaterogy=='titleList'" style="margin-top: 50px">
+      <div class="row">
+        <div class="col-lg-2 col-sm-2"></div>
+        <div class="col-lg-7 col-sm-6">
+          <div style="background-color: white;margin-top: 0px;border-radius: 15px">
+            <div style="padding: 25px;margin-top: 50px">
+              <h3 style="text-align: center;margin-top: 10px">Danh sách danh mục</h3>
+              <table class="table " style="margin-top: 20px">
+                <thead class="table-dark">
+                <tr>
+                  <th scope="col">STT</th>
+                  <th scope="col">Tên danh mục</th>
+                </tr>
+                </thead>
+                <tbody class="changeColor">
+                <tr *ngFor="let c of categorys,index as i" (click)="getCategoryClick(c)">
+                  <th scope="row">{{i + 1}}</th>
+                  <td>{{c.name}}</td>
+                </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-lg-7 col-sm-7" *ngIf="this.titleCaterogy=='titleCreate'" style="margin-top: 50px">
+      <div class="row">
+        <div class="col-lg-2 col-sm-2"></div>
+        <div class="col-lg-7 col-sm-6">
+          <div style="background-color: white;margin-top: 0px;border-radius: 15px">
+            <div style="padding: 25px;margin-top: 120px">
+              <h3 style="text-align: center;margin-top: 10px">Thêm mới danh mục</h3>
+              <form [formGroup]="categoryForm" (ngSubmit)="create()">
+                <div class="row" style="padding:10px 10px 20px 10px">
+                  <input formControlName="idCategory" hidden>
+
+                  <div style="margin-left: 20px">
+                    <b>Tên danh mục:</b>
+                    <input class="form-control" formControlName="name" style="margin-top: 10px">
+
+                  </div>
+                </div>
+                <div style="text-align: center;">
+                  <button class="btn btn-primary" type="submit">Thêm mới</button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-lg-7 col-sm-7" *ngIf="this.titleCaterogy=='titleEdit'" style="margin-top: 50px">
+      <div class="row">
+        <div class="col-lg-2 col-sm-2"></div>
+        <div class="col-lg-7 col-sm-6">
+          <div style="background-color: white;margin-top: 0px;border-radius: 15px">
+            <div style="padding: 25px;margin-top: 120px">
+              <h3 style="text-align: center;margin-top: 10px">Chỉnh sửa danh mục</h3>
+              <form [formGroup]="categoryForm" (ngSubmit)="create()">
+                <div class="row" style="padding:10px 10px 20px 10px">
+                  <input formControlName="idCategory" hidden>
+
+                  <div style="margin-left: 20px">
+                    <b>Tên danh mục:</b>
+                    <input class="form-control" formControlName="name" style="margin-top: 10px">
+
+                  </div>
+                </div>
+                <div style="text-align: center;">
+                  <button class="btn btn-primary" type="submit">Lưu</button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-lg-7 col-sm-7" *ngIf="this.titleCaterogy=='titleDelete'" style="margin-top: 50px">
+      <div class="row">
+        <div class="col-lg-2 col-sm-2"></div>
+        <div class="col-lg-7 col-sm-6">
+          <div style="background-color: white;margin-top: 0px;border-radius: 15px">
+            <div style="padding: 25px;margin-top: 100px">
+              <h3 style="text-align: center;">Xóa danh mục</h3>
+              <div class="row" style="padding:20px 10px 30px 10px">
+                <p>Bạn có chắc chắn muốn xóa danh mục : <span
+                  style="color: red;font-weight: bold">{{this.category.name}}
+                  ?</span></p>
+                <p>Lưu ý : Nếu đồng ý,dữ liệu sẽ không hoàn tác lại được !</p>
+              </div>
+              <div style="text-align: center;">
+                <button class="btn btn-danger" type="submit" style="margin-right: 5px;width: 150px"
+                        (click)="delete(this.category.idCategory)">Đồng ý
+                </button>
+                <button class="btn btn-primary" type="submit" style="margin-left: 5px;width: 150px"
+                        (click)="noDelete()">
+                  Không
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
 

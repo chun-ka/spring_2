@@ -28,9 +28,17 @@ public interface IFoodRepository extends JpaRepository<Food, Long> {
     @Query(value = "select * from food where category_id_category=1 and flag_food=true", nativeQuery = true)
     List<Food> getListFoodCombo();
 
-    @Query(value = "select * from food f  where f.flag_food=true and f.category_id_category= :categoryId", nativeQuery = true)
-    List<Food> getListFood(@Param("categoryId") int categoryId);
+    @Query(value = "select * from food f  where f.flag_food=true and f.category_id_category like concat ('%',:categoryId,'%')", nativeQuery = true)
+    List<Food> getListFoodByCategory(@Param("categoryId") String categoryId);
 
-    @Query(value = "select * from food f where (f.name like concat ('%',:name,'%') and f.flag_food=true)", nativeQuery = true)
+    @Query(value = "select * from food f join category c on c.id_category=f.category_id_category where (c.name like concat ('%',:name,'%') or f.name like concat ('%',:name,'%')) and f.flag_food=true", nativeQuery = true)
     List<Food> getListFoodBySearch(@Param("name") String name);
+
+    @Query(value = "select * from food f  where f.flag_food=true and f.category_id_category like concat ('%',:categoryId,'%')",
+            countQuery = "select * from food f  where f.flag_food=true and f.category_id_category like concat ('%',:categoryId,'%')",nativeQuery = true)
+    Page<Food> getPageFood(@Param("categoryId") String categoryId, Pageable pageable);
+
+    @Modifying
+    @Query(value = "update food set flag_food=false where id_food= :idFood",nativeQuery = true)
+    void deleteFood(@Param("idFood") Long idFood);
 }

@@ -1,4 +1,4 @@
-<div class="sub_page" (change)="isLogged">
+<div class="sub_page">
   <div class="hero_area">
     <div class="bg-box">
       <img src="assets/images/hero-bg.jpg" alt="">
@@ -22,7 +22,7 @@
           <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav  mx-auto " *ngIf="role != 'ROLE_ADMIN';else elseAdmin">
               <li class="nav-item ">
-                <a class="nav-link" routerLink="/" (click)="home()">Trang chủ <span class="sr-only">(current)</span></a>
+                <a class="nav-link" routerLink="/food" (click)="home()">Trang chủ <span class="sr-only">(current)</span></a>
               </li>
               <li class="nav-item">
                 <a class="nav-link" routerLink="/menu/:name" (click)="menu()">Menu</a>
@@ -37,23 +37,23 @@
             <ng-template #elseAdmin>
               <ul class="navbar-nav navbar-navAdmin mx-auto " style="margin-right: 100px">
                 <li class="nav-item ">
-                  <a class="nav-link" routerLink="/productAdmin" >Sản phẩm <span class="sr-only">(current)</span></a>
+                  <a class="nav-link" routerLink="/admin/product" >Sản phẩm <span class="sr-only">(current)</span></a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link" routerLink="/categoryAdmin" >Danh mục</a>
+                  <a class="nav-link" routerLink="/admin/category" >Danh mục</a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link" routerLink="/revenueAdmin">Doanh thu</a>
+                  <a class="nav-link" routerLink="/admin/revenue">Doanh thu</a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link" routerLink="/historyAdmin" >Lịch sử</a>
+                  <a class="nav-link" routerLink="/admin/history" >Lịch sử</a>
                 </li>
               </ul>
             </ng-template>
             <div class="user_option">
 
               <form class="form-inline" *ngIf="role != 'ROLE_ADMIN'">
-                <input class="order_online" type="search" placeholder="Tên món ăn" #search value="">
+                <input class="order_online" type="search" placeholder="Tên món ăn|Thể loại" #search value="">
 
                 <button class="btn  my-2 my-sm-0 nav_search-btn" type="submit" (click)="searchByName(search.value)" >
                   <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
@@ -90,7 +90,7 @@
                   <g>
                   </g>
 
-                </svg>
+                </svg><p style="color: #ffbe33">{{totalQuantity}}</p>
               </a>
 
               <a href="#" class="user_link" style="text-decoration: none" data-bs-toggle="modal"

@@ -1,9 +1,9 @@
 export interface User {
-  id?:number;
+  idUser?:number;
   username?:string;
   name?:string;
-  phone?:string;
+  phoneNumber?:string;
   email?:string;
   address?:string;
-  account?:Account;
+  avatar?:string;
 }
