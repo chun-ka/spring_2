@@ -21,8 +21,12 @@ public interface IFoodRepository extends JpaRepository<Food, Long> {
             countQuery = "select * from food where promotion != 0 and flag_food=true ", nativeQuery = true)
     Page<Food> getListFoodPromotion(Pageable pageable);
 
-    @Query(value = "select * from food join order_history on food.id_food=order_history.food_id_food  where flag_food=true order by order_history.quantity desc",
-            countQuery = "select * from food join order_history on food.id_food=order_history.food_id_food where flag_food=true  order by order_history.quantity desc", nativeQuery = true)
+    @Query(value = "select * from food f join order_history oh on f.id_food=oh.food_id_food join orders o on " +
+            " o.id_orders =oh.orders_id_orders where (f.flag_food=true and oh.flag_order_history=true and " +
+            " o.status=false ) order by oh.quantity desc",
+            countQuery = "select * from food f join order_history oh on f.id_food=oh.food_id_food join orders o on " +
+                    " o.id_orders =oh.orders_id_orders where (f.flag_food=true and oh.flag_order_history=true and " +
+                    " o.status=false ) order by oh.quantity desc", nativeQuery = true)
     Page<Food> getListFoodFamous(Pageable pageable);
 
     @Query(value = "select * from food where category_id_category=1 and flag_food=true", nativeQuery = true)

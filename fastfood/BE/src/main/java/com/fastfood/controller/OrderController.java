@@ -40,12 +40,23 @@ public class OrderController {
     }
 
     @GetMapping("/cart")
-    public ResponseEntity<Orders> getCartOrder(){
-        Orders order=iOrderService.getCartOrder();
+    public ResponseEntity<Orders> getCartOrder(@RequestParam Long userId){
+        Orders order=iOrderService.getCartOrder(userId);
         if (order==null){
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
         return new ResponseEntity<>(order,HttpStatus.OK);
+    }
+
+    @PutMapping("/payment")
+    public ResponseEntity<Orders> payment(@RequestBody Orders orders){
+        Orders order=iOrderService.findById(orders.getIdOrders());
+        if (order==null){
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
+        orders.setStatus(false);
+        iOrderService.save(orders);
+        return new ResponseEntity<>(orders,HttpStatus.OK);
     }
 
 }

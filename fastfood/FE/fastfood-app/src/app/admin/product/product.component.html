@@ -114,10 +114,9 @@
               <div class="col-lg-6 col-sm-6" style="text-align: center;">
                 <div class="swiper-slide">
                   <input formControlName="idFood" hidden>
-                  <img src="assets/images/o1.jpg" style="border-radius: 10px;width: 350px;height: 350px"></div>
-                <input formControlName="img" hidden>
-                <button class="btn btn-warning" style="margin-top: 15px" value="Chọn ảnh" type="button">Chọn ảnh
-                </button>
+                  <img src="{{fb}}" style="border-radius: 10px;width: 350px;height: 350px"></div>
+                <input formControlName="img" type="text" >
+                <input type="file" (change)="showPreview($event)" class="btn btn-warning" style="margin-top: 15px" value="Chọn ảnh" >
 
               </div>
               <div class="col-lg-6 col-sm-6">
@@ -155,8 +154,8 @@
               <div class="col-lg-6 col-sm-6" style="text-align: center;">
                 <div class="swiper-slide">
                   <input formControlName="idFood" hidden>
-                  <img src="assets/images/o1.jpg" style="border-radius: 10px;width: 350px;height: 350px"></div>
-                <input formControlName="img" hidden>
+                  <img src="{{food}}" style="border-radius: 10px;width: 350px;height: 350px"></div>
+                <input formControlName="img" type="text" >
                 <button class="btn btn-warning" style="margin-top: 15px" value="Chọn ảnh" type="button">Chọn ảnh
                 </button>
 

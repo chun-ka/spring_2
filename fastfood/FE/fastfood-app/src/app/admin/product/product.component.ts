@@ -6,6 +6,9 @@ import {FoodJson} from '../../entity/food/food-json';
 import {Category} from '../../entity/food/category';
 import {FormControl, FormGroup} from '@angular/forms';
 import Swal from 'sweetalert2';
+import {Observable} from 'rxjs';
+import {finalize} from 'rxjs/operators';
+import {AngularFireStorage} from '@angular/fire/storage';
 
 @Component({
   selector: 'app-product',
@@ -21,8 +24,12 @@ export class ProductComponent implements OnInit {
   food: Food = {price: 0};
   categorys: Category[] = [];
   foodPage!: FoodJson;
+  selectedImage: any = null;
+  downloadURL: Observable<string> | undefined;
+  fb: string | undefined;
+  src: string | undefined;
 
-  constructor(private tokenService: TokenService, private foodService: FoodService) {
+  constructor(private storage: AngularFireStorage,private tokenService: TokenService, private foodService: FoodService) {
     this.titleProduct='titleList';
     this.productForm = new FormGroup({
       idFood: new FormControl(),
@@ -39,6 +46,30 @@ export class ProductComponent implements OnInit {
     this.getListCategory();
     this.food={price:0};
 
+  }
+
+  showPreview(event: any) {
+    this.selectedImage = event.target.files[0];
+    const filePath = this.selectedImage.name;
+    const fileRef = this.storage.ref(filePath);
+    const task = this.storage.upload(filePath, this.selectedImage);
+    task
+      .snapshotChanges()
+      .pipe(
+        finalize(() => {
+          this.downloadURL = fileRef.getDownloadURL();
+          // @ts-ignore
+          this.downloadURL.subscribe(url => {
+            if (url) {
+              // lấy lại url
+              this.fb = url;
+            }
+            this.productForm.patchValue({img: url});
+            // console.log('link: ', this.fb);
+          });
+        })
+      )
+      .subscribe();
   }
 
   titleList() {

@@ -98,7 +98,7 @@ export class TokenService {
   }
 
   getCart() {
-    let cartJson = sessionStorage.getItem('cart');
+    let cartJson = localStorage.getItem('cart');
     if (cartJson) {
       return JSON.parse(cartJson);
     } else {
@@ -108,7 +108,7 @@ export class TokenService {
 
   saveCart(carts:any){
     let cartJson=JSON.stringify(carts);
-    sessionStorage.setItem('cart',cartJson);
+    localStorage.setItem('cart',cartJson);
   }
 
   getTotalQuantity(){

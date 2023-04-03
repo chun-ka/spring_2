@@ -20,6 +20,7 @@ public interface IOrderRepository extends JpaRepository<Orders,Long> {
     @Query(value = "select * from orders",nativeQuery = true)
     List<Orders> getListOrder();
 
-    @Query(value = "select * from orders where orders.status=true",nativeQuery = true)
-    Orders getCartOrder();
+    @Query(value = "select * from orders o where o.status=true and o.user_id_user=:userId",nativeQuery = true)
+    Orders getCartOrder(@Param("userId") Long userId);
+
 }

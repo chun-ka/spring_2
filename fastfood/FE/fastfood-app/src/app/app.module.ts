@@ -13,6 +13,9 @@ import {CustomerModule} from './customer/customer.module';
 import {CarouselModule} from 'ngx-owl-carousel-o';
 import {AdminModule} from './admin/admin.module';
 import {ReactiveFormsModule} from '@angular/forms';
+import {AngularFireModule} from '@angular/fire';
+import {environment} from '../environments/environment';
+import {AngularFireStorageModule} from '@angular/fire/storage';
 
 @NgModule({
   declarations: [
@@ -30,7 +33,9 @@ import {ReactiveFormsModule} from '@angular/forms';
     CustomerModule,
     CarouselModule,
     AdminModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    AngularFireModule.initializeApp(environment.firebaseConfig),
+    AngularFireStorageModule
 
   ],
   providers: [],

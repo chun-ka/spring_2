@@ -1,5 +1,6 @@
 package com.fastfood.service.impl;
 
+import com.fastfood.entity.account.User;
 import com.fastfood.entity.order.Orders;
 import com.fastfood.repository.IOrderRepository;
 import com.fastfood.service.IOrderService;
@@ -23,7 +24,19 @@ public class OrderService implements IOrderService {
     }
 
     @Override
-    public Orders getCartOrder() {
-        return iOrderRepository.getCartOrder();
+    public Orders getCartOrder( Long userId) {
+        return iOrderRepository.getCartOrder(userId);
     }
+
+    @Override
+    public Orders findById(Long orderId) {
+        return iOrderRepository.findById(orderId).get();
+    }
+
+    @Override
+    public void save(Orders orders) {
+        iOrderRepository.save(orders);
+    }
+
+
 }

@@ -21,6 +21,7 @@
     "@angular/platform-browser-dynamic": "~11.0.9",
     "@angular/router": "~11.0.9",
     "bootstrap": "^4.6.2",
+    "creditcardpayments": "^1.0.3",
     "firebase": "^8.0.0",
     "ngx-owl-carousel-o": "^5.1.1",
     "rxjs": "~6.6.0",

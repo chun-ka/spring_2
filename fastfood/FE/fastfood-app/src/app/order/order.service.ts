@@ -10,6 +10,7 @@ export class OrderService {
 
   URL_INSERT_USER='http://localhost:8080/order/user';
   URL_LIST_ORDER='http://localhost:8080/order';
+  URL_LIST_PAYMENT='http://localhost:8080/order/payment';
   URL_CART_ORDER='http://localhost:8080/order/cart';
   constructor(private httpClient:HttpClient) {}
 
@@ -21,7 +22,11 @@ export class OrderService {
     return this.httpClient.get<Order[]>(this.URL_LIST_ORDER);
   }
 
-  getCartOrder():Observable<Order> {
-    return this.httpClient.get<Order>(this.URL_CART_ORDER);
+  getCartOrder(userId: any):Observable<Order> {
+    return this.httpClient.get<Order>(this.URL_CART_ORDER+'?userId='+userId);
+  }
+
+  order(order: Order) {
+    return this.httpClient.put(this.URL_LIST_PAYMENT,order);
   }
 }
