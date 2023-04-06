@@ -1,5 +1,5 @@
 <div class="container-fluid" style="height: 80vh;background-color:aliceblue ">
-  <div class="row" style="padding-top: 50px" >
+  <div class="row" style="padding-top: 50px">
     <div class="col-lg-3 col-sm-3">
       <div class="user">
         <button class="info" (click)="info()"><span>Thông tin cá nhân</span></button>
@@ -21,13 +21,13 @@
                 <div class="swiper-slide">
                   <img src="{{user.avatar}}" style="border-radius: 10px;width: 350px;height: 350px"></div>
               </div>
-              <div class="col-lg-6 col-sm-6" >
+              <div class="col-lg-6 col-sm-6">
                 <div style="margin-left: 20px">
                   <p class="category"><span><b>Tên đăng nhập</b></span>: {{user.username}} </p>
                   <p class="category"><span><b>Họ và tên</b></span>: {{user.name}} </p>
-                <p class="category"><span><b>Số điện thoại</b></span>:  {{user.phoneNumber}}</p>
-                <p class="category"><span><b>Email</b></span>: {{user.email}}</p>
-                <p class="category"><span><b>Địa chỉ</b></span>:  {{user.address}}</p>
+                  <p class="category"><span><b>Số điện thoại</b></span>:  {{user.phoneNumber}}</p>
+                  <p class="category"><span><b>Email</b></span>: {{user.email}}</p>
+                  <p class="category"><span><b>Địa chỉ</b></span>:  {{user.address}}</p>
                 </div>
               </div>
             </div>
@@ -48,22 +48,53 @@
                 <div class="col-lg-6 col-sm-6" style="text-align: center;">
                   <div class="swiper-slide">
                     <input formControlName="idUser" hidden>
-                    <img src="{{user.avatar}}" style="border-radius: 10px;width: 350px;height: 350px" ></div>
-                  <button class="btn btn-warning" style="margin-top: 15px" value="Chọn ảnh" type="button" formControlName="avatar">Chọn ảnh</button>
+                    <img [src]="userEdit.avatar"  style="border-radius: 10px;width: 350px;height: 350px"></div>
+                  <input formControlName="avatar" type="text" hidden>
+                  <input type="file" (change)="showPreview($event)" class="btn btn-warning" style="margin-top: 15px"  >
 
                 </div>
-                <div class="col-lg-6 col-sm-6" >
+                <div class="col-lg-6 col-sm-6">
                   <div style="margin-left: 20px">
-                    <div class="category" style="margin-top: 5px"><b>Tên đăng nhập:</b><input class="form-control" formControlName="username"></div>
-                    <div class="category" style="margin-top: 5px"><b>Họ và tên:</b><input class="form-control" formControlName="name" ></div>
-                    <div class="category" style="margin-top: 5px"><b>Số điện thoại:</b><input class="form-control" formControlName="phoneNumber" ></div>
-                    <div class="category" style="margin-top: 5px"><b>Email:</b><input class="form-control" formControlName="email" ></div>
-                    <div class="category" style="margin-top: 5px"><b>Địa chỉ:</b><input class="form-control" formControlName="address" ></div>
+                    <div class="category" style="margin-top: 5px"><b>Tên đăng nhập:</b>
+                      <input class="form-control" formControlName="username">
+                      <div
+                        *ngIf="!formUserValue.username.valid && (formUserValue.username.dirty||formUserValue.username.touched)">
+                        <div style="color: red" *ngIf="formUserValue.username.hasError('required')">Không được bỏ trống</div>
+                      </div>
+                    </div>
+                    <div class="category" style="margin-top: 5px"><b>Họ và tên:</b>
+                      <input class="form-control" formControlName="name">
+                      <div
+                        *ngIf="!formUserValue.name.valid && (formUserValue.name.dirty||formUserValue.name.touched)">
+                        <div style="color: red" *ngIf="formUserValue.name.hasError('required')">Không được bỏ trống</div>
+                      </div>
+                    </div>
+                    <div class="category" style="margin-top: 5px"><b>Số điện thoại:</b>
+                      <input class="form-control" formControlName="phoneNumber">
+                      <div
+                        *ngIf="!formUserValue.phoneNumber.valid && (formUserValue.phoneNumber.dirty||formUserValue.phoneNumber.touched)">
+                        <div style="color: red" *ngIf="formUserValue.phoneNumber.hasError('required')">Không được bỏ trống</div>
+                      </div>
+                    </div>
+                    <div class="category" style="margin-top: 5px"><b>Email:</b>
+                      <input class="form-control" formControlName="email">
+                      <div
+                        *ngIf="!formUserValue.email.valid && (formUserValue.email.dirty||formUserValue.email.touched)">
+                        <div style="color: red" *ngIf="formUserValue.email.hasError('required')">Không được bỏ trống</div>
+                      </div>
+                    </div>
+                    <div class="category" style="margin-top: 5px"><b>Địa chỉ:</b>
+                      <input class="form-control" formControlName="address">
+                      <div
+                        *ngIf="!formUserValue.address.valid && (formUserValue.address.dirty||formUserValue.address.touched)">
+                        <div style="color: red" *ngIf="formUserValue.address.hasError('required')">Không được bỏ trống</div>
+                      </div>
+                    </div>
                   </div>
                 </div>
               </div>
               <div style="text-align: center;">
-                <button class="btn btn-primary" type="submit">Lưu thông tin</button>
+                <button class="btn btn-primary" type="submit" *ngIf="formUser.valid?'disabled':''">Lưu thông tin</button>
               </div>
 
             </form>
@@ -71,6 +102,124 @@
         </div>
       </div>
     </div>
+    <div class="col-lg-7 col-sm-7" *ngIf="this.titleUser=='history'" style="margin-top: 20px">
+      <div style="background-color: white;margin-top: 0px;border-radius: 15px">
+        <div style="padding: 15px;">
+          <h3 style="text-align: center;margin-bottom: 20px;margin-top: 10px">Lịch sử mua hàng</h3>
+          <div class="row">
+            <div class="col-2"></div>
+            <div class="col-4 d-flex">
+              <label for="startDay" style="padding: 7px 10px 0 0"> Từ:</label>
+              <input type="date" class="form-control" id="startDay" #startDay>
+            </div>
+            <div class="col-4 d-flex">
+              <label for="endDay" style="padding: 7px 10px 0 0"> Đến:</label>
+              <input type="date" class="form-control" id="endDay" #endDay>
+            </div>
+
+            <div class="col-2" style="float: left;">
+              <button class="btn btn-primary" (click)="search(startDay.value,endDay.value,0)">Tìm</button>
+            </div>
+          </div>
+
+          <div *ngIf="this.orderHistorys.length!=0">
+            <table class="table " style="margin-top: 20px">
+              <thead style="background-color: #222831;color: white">
+              <tr>
+                <th scope="col">STT</th>
+                <th scope="col">Tên món</th>
+                <th scope="col">Số lượng</th>
+                <th scope="col">Tổng tiền</th>
+                <th scope="col">Ngày mua</th>
+              </tr>
+              </thead>
+              <tbody>
+              <tr *ngFor="let o of orderHistorys,index as i">
+                <th scope="row">{{i + 1}}</th>
+                <td>{{o.name}}</td>
+                <td>{{o.quantity}}</td>
+                <td>{{totalPrice[i]| currency:'VND':''}}đ</td>
+                <td>{{o.purchaseDate | date:"dd/MM/yyyy"}}</td>
+              </tr>
+              </tbody>
+            </table>
+          </div>
+          <div *ngIf="this.orderHistorys.length==0">
+            <div class="row">
+              <div style="background-color: white;margin-top: 0px;border-radius: 15px">
+                <div style="margin-top: 50px;padding: 30px">
+                  <div class="row" style="padding:20px 10px 30px 10px">
+                    <div class="alert alert-danger" role="alert">
+                     Danh sách rỗng!Bạn không có mua hàng trong khoảng thời gian này.
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+      <div style="margin-top: 10px" *ngIf="this.orderHistorys.length!=0">
+        <div *ngIf="orderHistoryPage" class="d-flex justify-content-center" id="last-row">
+          <nav aria-label="Page navigation example">
+            <ul class="pagination">
+              <li class="page-item" [ngClass]="orderHistoryPage.first ? 'disabled': ''">
+                <a role="button" class="page-link" (click)="changePage(0)">Trang đầu</a>
+              </li>
+              <li class="page-item" [ngClass]="orderHistoryPage.first ? 'disabled': ''">
+                <a role="button" class="page-link" (click)="changePage(orderHistoryPage.number - 1)"><</a>
+              </li>
+              <li class="page-item" *ngIf="orderHistoryPage.number - 3 > 0">
+                <a role="button" class="page-link"
+                   (click)="changePage(orderHistoryPage.number - 4)">{{orderHistoryPage.number - 3}}</a>
+              </li>
+              <li class="page-item" *ngIf="orderHistoryPage.number - 2 > 0">
+                <a role="button" class="page-link"
+                   (click)="changePage(orderHistoryPage.number - 3)">{{orderHistoryPage.number - 2}}</a>
+              </li>
+              <li class="page-item" *ngIf="orderHistoryPage.number - 1 > 0">
+                <a role="button" class="page-link"
+                   (click)="changePage(orderHistoryPage.number - 2)">{{orderHistoryPage.number - 1}}</a>
+              </li>
+              <li class="page-item" *ngIf="orderHistoryPage.number > 0">
+                <a role="button" class="page-link"
+                   (click)="changePage(orderHistoryPage.number - 1)">{{orderHistoryPage.number}}</a>
+              </li>
+              <li class="page-item active"><a class="page-link">{{orderHistoryPage.number + 1}}</a></li>
+              <li class="page-item" *ngIf="orderHistoryPage.number + 2 <= orderHistoryPage.totalPages">
+                <a role="button" class="page-link"
+                   (click)="changePage(orderHistoryPage.number + 1)">{{orderHistoryPage.number + 2}}</a>
+              </li>
+              <li class="page-item" *ngIf="orderHistoryPage.number + 3 <= orderHistoryPage.totalPages">
+                <a role="button" class="page-link"
+                   (click)="changePage(orderHistoryPage.number + 2)">{{orderHistoryPage.number + 3}}</a>
+              </li>
+              <li class="page-item" *ngIf="orderHistoryPage.number + 4 <= orderHistoryPage.totalPages">
+                <a role="button" class="page-link"
+                   (click)="changePage(orderHistoryPage.number + 3)">{{orderHistoryPage.number + 4}}</a>
+              </li>
+              <li class="page-item" *ngIf="orderHistoryPage.number + 5 <= orderHistoryPage.totalPages">
+                <a role="button" class="page-link"
+                   (click)="changePage(orderHistoryPage.number + 4)">{{orderHistoryPage.number + 5}}</a>
+              </li>
+              <li class="page-item" [ngClass]="orderHistoryPage.last ? 'disabled': ''">
+                <a role="button" class="page-link"
+                   (click)="changePage(orderHistoryPage.number + 1)">></a>
+              </li>
+              <li class="page-item" [ngClass]="orderHistoryPage.last ? 'disabled': ''">
+                <a role="button" class="page-link"
+                   (click)="changePage(orderHistoryPage.totalPages - 1)">
+                  Trang cuối
+                </a>
+              </li>
+            </ul>
+          </nav>
+        </div>
+      </div>
+
+    </div>
+
   </div>
 </div>
 

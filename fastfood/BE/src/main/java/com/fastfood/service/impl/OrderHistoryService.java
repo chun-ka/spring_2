@@ -6,6 +6,8 @@ import com.fastfood.entity.order.OrderHistory;
 import com.fastfood.repository.IOrderHistoryRepository;
 import com.fastfood.service.IOrderHistoryService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -26,8 +28,8 @@ public class OrderHistoryService implements IOrderHistoryService {
     }
 
     @Override
-    public void removeOrderHistory(Long idFood) {
-        iOrderHistoryRepository.removeOrderHistory(idFood);
+    public void removeOrderHistory(Long idFood, Long orderId) {
+        iOrderHistoryRepository.removeOrderHistory(idFood,orderId);
     }
 
     @Override
@@ -43,5 +45,10 @@ public class OrderHistoryService implements IOrderHistoryService {
     @Override
     public ToTalQuantity getToTalQuantity(Long userId) {
         return iOrderHistoryRepository.getToTalQuantity(userId);
+    }
+
+    @Override
+    public Page<OrderHistoryDto> getHistory(String startDay, String endDay, Long userId, Pageable pageable) {
+        return iOrderHistoryRepository.getHistory(startDay,endDay,userId,pageable);
     }
 }

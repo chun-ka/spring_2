@@ -6,6 +6,9 @@ import com.fastfood.entity.account.User;
 import com.fastfood.entity.order.OrderHistory;
 import com.fastfood.service.IOrderHistoryService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -57,11 +60,11 @@ public class OrderHistoryController {
     }
 
     @GetMapping("/remove")
-    public ResponseEntity<?> removeOrderHistory(@RequestParam Long idFood){
+    public ResponseEntity<?> removeOrderHistory(@RequestParam Long idFood,@RequestParam  Long orderId){
         if (idFood==null){
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
-        iOrderHistoryService.removeOrderHistory(idFood);
+        iOrderHistoryService.removeOrderHistory(idFood,orderId);
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
@@ -74,4 +77,13 @@ public class OrderHistoryController {
         return new ResponseEntity<>(toTalQuantity,HttpStatus.OK);
     }
 
+    @GetMapping("/history")
+    public ResponseEntity<Page<OrderHistoryDto>> getHistory(@RequestParam(defaultValue = "") String startDay,
+                                                            @RequestParam String endDay, @RequestParam Long userId, @PageableDefault(size = 8)Pageable pageable){
+        Page<OrderHistoryDto> orderHistorys=iOrderHistoryService.getHistory(startDay,endDay,userId,pageable);
+        if (orderHistorys.isEmpty()){
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
+        return new ResponseEntity<>(orderHistorys,HttpStatus.OK);
+    }
 }

@@ -7,5 +7,6 @@ public interface OrderHistoryDto {
     String getImg();
     int getQuantity();
     int getPrice();
-    int getpriceSale();
+    int getPriceSale();
+    String getPurchaseDate();
 }

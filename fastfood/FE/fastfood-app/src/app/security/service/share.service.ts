@@ -11,14 +11,23 @@ export class ShareService {
     quantity: 0
   });
 
+  private dataOrderId = new BehaviorSubject<any>({
+    id: 0
+  });
+
 
   getData = this.data.asObservable();
+  getDataOrderId = this.dataOrderId.asObservable();
 
   constructor() {
   }
 
   changeData(data: any) {
     this.data.next(data);
+  }
+
+  changeDataOrderId(data: any) {
+    this.dataOrderId.next(data);
   }
 
 

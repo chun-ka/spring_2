@@ -16,7 +16,7 @@
             <div style="padding: 25px;margin-top: 50px">
               <h3 style="text-align: center;margin-top: 10px">Danh sách danh mục</h3>
               <table class="table " style="margin-top: 20px">
-                <thead class="table-dark">
+                <thead  style="background-color: #222831;color: white">
                 <tr>
                   <th scope="col">STT</th>
                   <th scope="col">Tên danh mục</th>
@@ -48,11 +48,14 @@
                   <div style="margin-left: 20px">
                     <b>Tên danh mục:</b>
                     <input class="form-control" formControlName="name" style="margin-top: 10px">
-
+                    <div
+                      *ngIf="!categoryFormValue.name.valid && (categoryFormValue.name.dirty||categoryFormValue.name.touched)">
+                      <div style="color: red" *ngIf="categoryFormValue.name.hasError('required')">Không được bỏ trống</div>
+                    </div>
                   </div>
                 </div>
                 <div style="text-align: center;">
-                  <button class="btn btn-primary" type="submit">Thêm mới</button>
+                  <button class="btn btn-primary" type="submit" *ngIf="categoryForm.valid?'disabled':''" >Thêm mới</button>
                 </div>
               </form>
             </div>
@@ -74,11 +77,14 @@
                   <div style="margin-left: 20px">
                     <b>Tên danh mục:</b>
                     <input class="form-control" formControlName="name" style="margin-top: 10px">
-
+                    <div
+                      *ngIf="!categoryFormValue.name.valid && (categoryFormValue.name.dirty||categoryFormValue.name.touched)">
+                      <div style="color: red" *ngIf="categoryFormValue.name.hasError('required')">Không được bỏ trống</div>
+                    </div>
                   </div>
                 </div>
                 <div style="text-align: center;">
-                  <button class="btn btn-primary" type="submit">Lưu</button>
+                  <button class="btn btn-primary" type="submit"  *ngIf="categoryForm.valid?'disabled':''" >Lưu</button>
                 </div>
               </form>
             </div>

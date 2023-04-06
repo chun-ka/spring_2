@@ -19,6 +19,7 @@ public class Food {
     private Long idFood;
     private String name;
     private String img;
+    private String describeFood;
     private int price;
     @ManyToOne
     private Category category;

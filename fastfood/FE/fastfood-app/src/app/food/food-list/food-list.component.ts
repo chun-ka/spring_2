@@ -23,6 +23,7 @@ export class FoodListComponent implements OnInit {
   pricePromotion: number = 0;
   quantity = 1;
   orderId: any;
+  actives:any=[];
 
   carts: any = [];
   isLogged = false;
@@ -38,22 +39,26 @@ export class FoodListComponent implements OnInit {
               private cartService: CartService) {
 
     this.activatedRoute.paramMap.subscribe(data => {
-      if (data != null) {
-        this.getListBySearch(data.get('name'));
+      let name = data.get('name');
+      if (name != ':name') {
+        this.getListBySearch(name);
       }
     }, error => {
-      this.foodService.getListCombo().subscribe(data => {
-        if (data != null) {
-          this.foodList = data;
-          // console.log(data);
-        }
-      });
+    });
+
+    this.foodService.getListCombo().subscribe(data => {
+      if (data != null) {
+        this.foodList = data;
+      }
     });
 
     this.foodService.getListCategory().subscribe(data => {
       this.categorys = data;
-      // console.log(data);
+      for (let i = 0; i < this.categorys.length; i++) {
+        this.actives[i]='';
+      }
     });
+
     this.isLogged = this.token.isLogger();
 
   }
@@ -89,23 +94,39 @@ export class FoodListComponent implements OnInit {
   }
 
   getOrderId() {
-    this.isLogged = this.token.isLogger();
-    console.log( this.isLogged);
-    if (this.isLogged) {
-      this.userId = Number(this.token.getId());
-      this.orderService.getCartOrder(this.userId).subscribe(data => {
-        if (data != null) {
-          this.orderId = Number(data.idOrders);
-          console.log(this.orderId);
-        }
-      });
+    this.share.getDataOrderId.subscribe(data => {
+      this.orderId = data.id;
+      console.log(this.orderId);
+    });
+    if (this.orderId == 0) {
+      this.isLogged = this.token.isLogger();
+      if (this.isLogged) {
+        this.userId = this.token.getId();
+        // getOrderId
+        this.orderService.getCartOrder(this.userId).subscribe(data => {
+          if (data != null) {
+            this.orderId = data.idOrders;
+            console.log(this.orderId);
+          }
+        }, error => {
+          this.orderService.insertUser(this.userId).subscribe(data => {
+            if (data != null) {
+              this.orderService.getListOrder().subscribe(data => {
+                this.orderId = data.length;
+              });
+            }
+          });
+        });
+      }
     }
-
   }
 
 
-
-  category(categoryId: any) {
+  category(categoryId: any, index: number) {
+    for (let i = 0; i < this.actives.length; i++) {
+      this.actives[i]='';
+    }
+    this.actives[index]='active';
     this.foodService.getListFoodByCategory(categoryId).subscribe(data => {
       if (data != null) {
         this.foodList = data;
@@ -120,6 +141,11 @@ export class FoodListComponent implements OnInit {
           this.foodList = data;
         }
       }, error => {
+        Swal.fire(
+          'Thông báo!',
+          'Không có món ăn nào bạn cần tìm!',
+          'warning'
+        );
         this.foodService.getListCombo().subscribe(data => {
           if (data != null) {
             this.foodList = data;
@@ -136,21 +162,22 @@ export class FoodListComponent implements OnInit {
     this.quantity = 1;
     this.food = f;
     this.pricePromotion = Math.floor(Number(price - price * Number(f.promotion) / 100) / 1000) * 1000;
-    this.getOrderId();
   }
 
-   addToCartDetail(f: Food, quantity: string) {
+  addToCartDetail(f: Food, quantity: string) {
+    console.log(this.orderId);
     this.isLogged = this.token.isLogger();
     if (this.isLogged) {
-      this.getOrderId();
       this.cartService.getCart(f.idFood, this.orderId).subscribe(data => {
         if (data) {
           this.cartService.updateCart(parseInt(quantity), f.idFood, this.orderId).subscribe(data => {
             this.changeQuantityByShare();
+            console.log('ok');
           });
         } else {
           this.cartService.insertCart(parseInt(quantity), f.idFood, this.orderId).subscribe(data => {
             this.changeQuantityByShare();
+            console.log('ok2');
           });
         }
       });
@@ -195,27 +222,22 @@ export class FoodListComponent implements OnInit {
     this.price = this.pricePromotion * Number(event.target.value);
   }
 
-   addToCart(f: Food) {
+  addToCart(f: Food) {
+    console.log(this.orderId);
     this.isLogged = this.token.isLogger();
     if (this.isLogged) {
-      this.userId = Number(this.token.getId());
-      this.orderService.getCartOrder(this.userId).subscribe(data => {
-        if (data != null) {
-          this.orderId = Number(data.idOrders);
-          console.log(this.orderId);
-
-          this.cartService.getCart(f.idFood, this.orderId).subscribe(data => {
-            if (data) {
-              this.cartService.updateCart(1, f.idFood, this.orderId).subscribe(data => {
-                this.changeQuantityByShare();
-              });
-            } else {
-              this.cartService.insertCart(1, f.idFood, this.orderId).subscribe(data => {
-                this.changeQuantityByShare();
-              });
-            }
+      this.cartService.getCart(f.idFood, this.orderId).subscribe(data => {
+        console.log(data);
+        if (data) {
+          this.cartService.updateCart(1, f.idFood, this.orderId).subscribe(data => {
+            this.changeQuantityByShare();
+            console.log(12345);
           });
-
+        } else {
+          this.cartService.insertCart(1, f.idFood, this.orderId).subscribe(data => {
+            this.changeQuantityByShare();
+            console.log(45678);
+          });
         }
       });
     } else {

@@ -54,7 +54,7 @@ public class OrderController {
         if (order==null){
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
-        orders.setStatus(false);
+        orders.setUser(orders.getUser());
         iOrderService.save(orders);
         return new ResponseEntity<>(orders,HttpStatus.OK);
     }

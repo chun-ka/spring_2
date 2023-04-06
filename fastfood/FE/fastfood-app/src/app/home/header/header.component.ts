@@ -68,7 +68,7 @@ export class HeaderComponent implements OnInit, DoCheck {
 
   changeQuantityByShare() {
     this.isLogged = this.token.isLogger();
-    if (this.isLogged) {
+    if (this.isLogged && this.role!='ROLE_ADMIN') {
       this.userId = this.token.getId();
       this.cartService.getTotalQuantity(this.userId).subscribe(data => {
         if (data) {
@@ -166,7 +166,15 @@ export class HeaderComponent implements OnInit, DoCheck {
       this.orderService.getCartOrder(this.userId).subscribe(data => {
         if (data != null) {
           this.orderId = data.idOrders;
+          console.log(this.orderId);
           this.insertCart();
+          let _this=this;
+          setTimeout(function(){
+            _this.share.changeDataOrderId({
+              id:_this.orderId ,
+            });
+          },500)
+
         }
       }, error => {
         this.orderService.insertUser(this.userId).subscribe(data => {
@@ -174,6 +182,12 @@ export class HeaderComponent implements OnInit, DoCheck {
             this.orderService.getListOrder().subscribe(data => {
               this.orderId = data.length;
               this.insertCart();
+              let _this=this;
+              setTimeout(function(){
+                _this.share.changeDataOrderId({
+                  id:_this.orderId ,
+                });
+              },500)
             });
           }
         });

@@ -5,23 +5,24 @@
     <div class="heading_container heading_center">
       <h2></h2>
     </div>
+    <br>
     <ul class="filters_menu">
-      <li *ngFor="let c of categorys" data-filter="*" (click)="category(c.idCategory)">{{c.name}}</li>
+      <li *ngFor="let c of categorys,index as i" data-filter="*" (click)="category(c.idCategory,i)" class="{{actives[i]}}">{{c.name}}</li>
       <p></p>
     </ul>
 
     <div class="filters-content">
       <div class="row grid">
         <div class="col-sm-6 col-lg-4 all pizza" *ngFor="let f of foodList" style="padding-bottom: 40px">
-          <div class="box">
-            <div>
-              <div class="img-box" (click)="infoFood(f,f.price)" data-bs-toggle="modal" data-bs-target="#foodInfo">
-                <img src="{{f.img}}" alt="">
+          <div class="box" >
+            <div >
+              <div class="img-box" (click)="infoFood(f,f.price)" data-bs-toggle="modal" data-bs-target="#foodInfo" style="background-color: white">
+                <img src="{{f.img}}" alt="" style="width: 250px;height: 190px;">
               </div>
               <div class="detail-box">
-                <h2 style="font-family: Dancing Script">
+                <h3 style="font-family: Dancing Script">
                   {{f.name}}
-                </h2>
+                </h3>
 <!--                <h6 *ngIf="f.promotion!=0" style="font-family: Dancing Script">-->
 <!--                  {{f.promotion}}% Off-->
 <!--                </h6>-->
@@ -92,6 +93,7 @@
 
       </div>
     </div>
+    <br>
     <!--    <div class="btn-box">-->
     <!--      <a href="">-->
     <!--        View More-->
@@ -112,11 +114,12 @@
         <div class="row" style="padding:40px 10px">
           <div class="col-lg-6 col-sm-6">
             <div class="swiper-slide"><img
-              src="{{food.img}}" style="width: auto;border-radius: 10px;margin-left: 25px"></div>
+              src="{{food.img}}" style="height: 300px;width:300px;border-radius: 10px;margin-left: 25px"></div>
           </div>
           <div class="col-lg-6 col-sm-6">
             <p class="category"><span><b>Tên món</b></span>: {{food.name}} </p>
-            <p class="category"><span><b>Kích thớc</b></span>: Size {{food.size?.name}}</p>
+            <p class="category" *ngIf="food.describeFood"><span><b>Mô tả</b></span>: {{food.describeFood}} </p>
+            <p class="category"><span><b>Phân loại</b></span>: {{food.category?.name}} </p>
             <p class="category" *ngIf="food.promotion!=0"><span><b>Khuyến mãi</b></span>: {{food.promotion}}%</p>
             <p class="category"><span><b>Số lượng</b>:</span><input type="number" min="1" [(ngModel)]="this.quantity"
                                                                     style="width: 40px;margin-left: 10px" #quantityHtlm

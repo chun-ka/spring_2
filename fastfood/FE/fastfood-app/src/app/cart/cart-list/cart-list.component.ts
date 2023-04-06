@@ -31,10 +31,10 @@ export class CartListComponent implements OnInit {
   title = 'cart';
   isPayment = false;
   paymentTotal: string = '';
-  orderForm:FormGroup;
-  user:User={};
-  currentDate:any;
-  order:Order={};
+  orderForm: FormGroup;
+  user: User = {};
+  currentDate: any;
+  order: Order = {};
 
 
   constructor(private token: TokenService,
@@ -42,31 +42,34 @@ export class CartListComponent implements OnInit {
               private router: Router,
               private orderService: OrderService,
               private cartService: CartService,
-              private customerService:CustomerService) {
-    this.orderForm=new FormGroup({
-      idOrders:new FormControl(),
-      name:new FormControl('',[Validators.required]),
-      deliveryAddress:new FormControl('',[Validators.required]),
-      phone:new FormControl('',[Validators.required,Validators.pattern("^0[1-9]$")]),
-      date:new FormControl(),
-      customer:new FormControl(),
-    })
+              private customerService: CustomerService) {
+    this.orderForm = new FormGroup({
+      idOrders: new FormControl(),
+      name: new FormControl('', [Validators.required]),
+      deliveryAddress: new FormControl('', [Validators.required]),
+      phone: new FormControl('', [Validators.required, Validators.pattern('^0[1-9]$')]),
+      date: new FormControl(),
+      user: new FormControl(),
+    });
   }
 
   ngOnInit(): void {
+    this.getOrderId();
+    this.title = 'cart';
     this.isLogged = this.token.isLogger();
     window.scroll(0, 45);
-    this.getCartList();
+    // this.getCartList();
     this.getTotalAndSale(this.carts);
-    this.getOrderId();
     this.changeQuantityByShare();
   }
 
   getCartList() {
+    this.isLogged = this.token.isLogger();
     if (this.isLogged) {
       this.userId = Number(this.token.getId());
       this.cartService.getListCart(this.userId).subscribe(data => {
         this.carts = data;
+        // console.log(data);
         this.getTotalAndSale(this.carts);
       }, error => {
         this.carts = [];
@@ -99,14 +102,31 @@ export class CartListComponent implements OnInit {
   }
 
   getOrderId() {
-    if (this.isLogged) {
-      this.userId = Number(this.token.getId());
-      this.orderService.getCartOrder(this.userId).subscribe(data => {
-        if (data != null) {
-          this.orderId = Number(data.idOrders);
-          // console.log(this.orderId);
-        }
-      });
+    this.share.getDataOrderId.subscribe(data => {
+      this.orderId = data.id;
+      this.getCartList();
+      console.log(this.orderId);
+    });
+    if (this.orderId == 0) {
+      this.isLogged = this.token.isLogger();
+      if (this.isLogged) {
+        this.userId = Number(this.token.getId());
+        this.orderService.getCartOrder(this.userId).subscribe(data => {
+          if (data != null) {
+            this.orderId = Number(data.idOrders);
+            console.log(this.orderId);
+          }
+        },error => {
+          this.orderService.insertUser(this.userId).subscribe(data => {
+            if (data != null) {
+              this.orderService.getListOrder().subscribe(data => {
+                this.orderId = data.length;
+                console.log(this.orderId);
+              });
+            }
+          });
+        });
+      }
     }
   }
 
@@ -125,6 +145,8 @@ export class CartListComponent implements OnInit {
 
 
   downQuantity(index: number, quantity: any) {
+    console.log(this.orderId);
+    this.isLogged = this.token.isLogger();
     if (this.isLogged) {
       if (quantity > 1) {
         this.cartService.updateCart(-1, this.carts[index].id, this.orderId).subscribe(data => {
@@ -151,6 +173,8 @@ export class CartListComponent implements OnInit {
   }
 
   upQuantity(index: number, quantity: any) {
+    console.log(this.orderId);
+    this.isLogged = this.token.isLogger();
     if (this.isLogged) {
       if (quantity < 100) {
         this.cartService.updateCart(1, this.carts[index].id, this.orderId).subscribe(data => {
@@ -178,9 +202,10 @@ export class CartListComponent implements OnInit {
   }
 
   removeCart(index: number) {
-    console.log(this.isLogged);
+    console.log(this.orderId);
+    this.isLogged = this.token.isLogger();
     if (this.isLogged) {
-      this.cartService.removeCart(this.carts[index].id).subscribe(data => {
+      this.cartService.removeCart(this.carts[index].id,this.orderId).subscribe(data => {
         this.changeQuantityByShare();
         this.totalPriceFood = 0;
         this.saleFood = 0;
@@ -199,7 +224,7 @@ export class CartListComponent implements OnInit {
       this.getTotalAndSale(this.carts);
     }
     Swal.fire({
-      position:'top',
+      position: 'top',
       icon: 'success',
       title: 'Sản phẩm đã bị xóa khỏi giỏ hàng!',
       showConfirmButton: false,
@@ -210,8 +235,6 @@ export class CartListComponent implements OnInit {
   payment() {
     this.getUserInfo();
     this.currentDate = new Date(Date.now());
-
-
     this.isLogged = this.token.isLogger();
     if (!this.isLogged) {
       Swal.fire(
@@ -225,7 +248,7 @@ export class CartListComponent implements OnInit {
   }
 
   saveOrder() {
-    this.order=this.orderForm.value;
+    this.order = this.orderForm.value;
     console.log(this.order);
     this.paymentTotal = String(+((this.totalPriceFood / 23485.48).toFixed(2)));
     this.isPayment = true;
@@ -237,7 +260,7 @@ export class CartListComponent implements OnInit {
           currency: 'USD',
           value: _this.paymentTotal,
           onApprove: (details) => {
-            _this.orderService.order(_this.order).subscribe(data=>{
+            _this.orderService.order(_this.order).subscribe(data => {
               Swal.fire({
                 position: 'top',
                 icon: 'success',
@@ -245,8 +268,9 @@ export class CartListComponent implements OnInit {
                 showConfirmButton: false,
                 timer: 1500
               });
-              _this.title = 'cart';
-            },error => {
+              _this.ngOnInit();
+
+            }, error => {
               Swal.fire({
                 position: 'top',
                 icon: 'warning',
@@ -254,7 +278,7 @@ export class CartListComponent implements OnInit {
                 showConfirmButton: false,
                 timer: 1500
               });
-            })
+            });
           }
         }
       );
@@ -262,16 +286,16 @@ export class CartListComponent implements OnInit {
 
   }
 
-  getUserInfo(){
-    this.userId=this.token.getId();
-    this.customerService.getUserById(this.userId).subscribe(data=>{
-      if (data!=null){
-        this.user=data;
+  getUserInfo() {
+    this.userId = this.token.getId();
+    this.customerService.getUserById(this.userId).subscribe(data => {
+      if (data != null) {
+        this.user = data;
       }
     });
   }
 
-  get orderFormValue(){
+  get orderFormValue() {
     return this.orderForm.controls;
   }
 

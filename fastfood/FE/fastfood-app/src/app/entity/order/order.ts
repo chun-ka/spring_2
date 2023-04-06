@@ -6,5 +6,5 @@ export interface Order {
   deliveryAddress?:string;
   phone?:string;
   date?:string;
-  customer?:User;
+  user?:User;
 }

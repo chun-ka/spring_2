@@ -9,4 +9,5 @@ export interface Food {
   category?:Category;
   price:number;
   promotion?:any;
+  describeFood?:string;
 }

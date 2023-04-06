@@ -22,11 +22,11 @@
             </div>
 
             <div class="col-2" style="float: right;">
-              <button class="btn btn-primary" (click)="search(searchCategory.value)">Tìm</button>
+              <button class="btn btn-primary" (click)="search(searchCategory.value)">Tìm </button>
             </div>
           </div>
           <table class="table " style="margin-top: 20px">
-            <thead class="table-dark">
+            <thead style="background-color: #222831;color: white">
             <tr>
               <th scope="col">STT</th>
               <th scope="col">Tên sản phẩm</th>
@@ -39,7 +39,7 @@
             <tr *ngFor="let f of foods,index as i" (click)="getIdClick(f)">
               <th scope="row">{{i + 1}}</th>
               <td>{{f.name}}</td>
-              <td>{{f.price}}</td>
+              <td>{{f.price| currency:'VND':''}}đ</td>
               <td>{{f.category?.name}}</td>
               <td>{{f.promotion}}%</td>
             </tr>
@@ -105,6 +105,7 @@
         </div>
       </div>
     </div>
+
     <div class="col-lg-7 col-sm-7" *ngIf="this.titleProduct=='titleCreate'" style="margin-top: 50px">
       <div style="background-color: white;margin-top: 0px;border-radius: 15px">
         <div style="padding: 15px;">
@@ -114,29 +115,48 @@
               <div class="col-lg-6 col-sm-6" style="text-align: center;">
                 <div class="swiper-slide">
                   <input formControlName="idFood" hidden>
-                  <img src="{{fb}}" style="border-radius: 10px;width: 350px;height: 350px"></div>
-                <input formControlName="img" type="text" >
+                  <img src="{{fb}}" style="border-radius: 10px;width: 300px;height: 300px"></div>
+                <input formControlName="img" type="text"  hidden>
                 <input type="file" (change)="showPreview($event)" class="btn btn-warning" style="margin-top: 15px" value="Chọn ảnh" >
 
               </div>
               <div class="col-lg-6 col-sm-6">
                 <div style="margin-left: 20px">
-                  <div style="margin-top: 10px"><b>Tên sản phẩm:</b><input class="form-control" formControlName="name">
+                  <div style="margin-top: 10px"><b>Tên sản phẩm:</b>
+                    <input class="form-control" formControlName="name">
+                    <div
+                      *ngIf="!productFormValue.name.valid && (productFormValue.name.dirty||productFormValue.name.touched)">
+                      <div style="color: red" *ngIf="productFormValue.name.hasError('required')">Không được bỏ trống</div>
+                    </div>
                   </div>
                   <div style="margin-top: 10px"><b>Phân loại:</b>
                     <select class="form-select" formControlName="category">
                       <option *ngFor="let c of categorys" [ngValue]="c">{{c.name}}</option>
                     </select>
+                    <div
+                      *ngIf="!productFormValue.category.valid && (productFormValue.category.dirty||productFormValue.category.touched)">
+                      <div style="color: red" *ngIf="productFormValue.category.hasError('required')">Không được bỏ trống</div>
+                    </div>
                   </div>
-                  <div style="margin-top: 10px"><b>Giá:</b><input type="number" class="form-control"
-                                                                  formControlName="price"></div>
-                  <div style="margin-top: 10px"><b>Khuyến mãi:</b><input type="number" class="form-control"
-                                                                         formControlName="promotion"></div>
+                  <div style="margin-top: 10px"><b>Giá:</b>
+                    <input type="number" class="form-control" formControlName="price">
+                    <div
+                      *ngIf="!productFormValue.price.valid && (productFormValue.price.dirty||productFormValue.price.touched)">
+                      <div style="color: red" *ngIf="productFormValue.price.hasError('required')">Không được bỏ trống</div>
+                    </div>
+                  </div>
+                  <div style="margin-top: 10px"><b>Khuyến mãi:</b>
+                    <input type="number" class="form-control" formControlName="promotion">
+                    <div
+                      *ngIf="!productFormValue.promotion.valid && (productFormValue.promotion.dirty||productFormValue.promotion.touched)">
+                      <div style="color: red" *ngIf="productFormValue.promotion.hasError('required')">Không được bỏ trống</div>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
             <div style="text-align: center;">
-              <button class="btn btn-primary" type="submit">Thêm mới</button>
+              <button class="btn btn-primary" type="submit" *ngIf="productForm.valid?'disabled':''" >Thêm mới</button>
             </div>
 
           </form>
@@ -145,6 +165,7 @@
       </div>
 
     </div>
+
     <div class="col-lg-7 col-sm-7" *ngIf="this.titleProduct=='titleEdit'" style="margin-top: 50px">
       <div style="background-color: white;margin-top: 0px;border-radius: 15px">
         <div style="padding: 15px;">
@@ -153,31 +174,47 @@
             <div class="row" style="padding:40px 10px 20px 10px">
               <div class="col-lg-6 col-sm-6" style="text-align: center;">
                 <div class="swiper-slide">
-                  <input formControlName="idFood" hidden>
-                  <img src="{{food}}" style="border-radius: 10px;width: 350px;height: 350px"></div>
-                <input formControlName="img" type="text" >
-                <button class="btn btn-warning" style="margin-top: 15px" value="Chọn ảnh" type="button">Chọn ảnh
-                </button>
-
+                  <img [src]="foodEdit.img"  style="border-radius: 10px;width: 300px;height: 300px"></div>
+                <input formControlName="img" type="text" hidden>
+                <input type="file" (change)="showPreview($event)" class="btn btn-warning" style="margin-top: 15px"  >
               </div>
               <div class="col-lg-6 col-sm-6">
                 <div style="margin-left: 20px">
-                  <div style="margin-top: 10px"><b>Tên sản phẩm:</b><input class="form-control" formControlName="name">
+                  <div style="margin-top: 10px"><b>Tên sản phẩm:</b>
+                    <input class="form-control" formControlName="name">
+                    <div
+                      *ngIf="!productFormValue.name.valid && (productFormValue.name.dirty||productFormValue.name.touched)">
+                      <div style="color: red" *ngIf="productFormValue.name.hasError('required')">Không được bỏ trống</div>
+                    </div>
                   </div>
                   <div style="margin-top: 10px"><b>Phân loại:</b>
                     <select class="form-select" formControlName="category" [compareWith]="compareWithCategory">
                       <option *ngFor="let c of categorys" [ngValue]="c">{{c.name}}</option>
                     </select>
+                    <div
+                      *ngIf="!productFormValue.category.valid && (productFormValue.category.dirty||productFormValue.category.touched)">
+                      <div style="color: red" *ngIf="productFormValue.category.hasError('required')">Không được bỏ trống</div>
+                    </div>
                   </div>
-                  <div style="margin-top: 10px"><b>Giá:</b><input type="number" class="form-control"
-                                                                  formControlName="price"></div>
-                  <div style="margin-top: 10px"><b>Khuyến mãi:</b><input type="number" class="form-control"
-                                                                         formControlName="promotion"></div>
+                  <div style="margin-top: 10px"><b>Giá:</b>
+                    <input type="number" class="form-control" formControlName="price">
+                    <div
+                      *ngIf="!productFormValue.price.valid && (productFormValue.price.dirty||productFormValue.price.touched)">
+                      <div style="color: red" *ngIf="productFormValue.price.hasError('required')">Không được bỏ trống</div>
+                    </div>
+                  </div>
+                  <div style="margin-top: 10px"><b>Khuyến mãi:</b>
+                    <input type="number" class="form-control" formControlName="promotion">
+                    <div
+                      *ngIf="!productFormValue.promotion.valid && (productFormValue.promotion.dirty||productFormValue.promotion.touched)">
+                      <div style="color: red" *ngIf="productFormValue.promotion.hasError('required')">Không được bỏ trống</div>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
             <div style="text-align: center;">
-              <button class="btn btn-primary" type="submit">Lưu</button>
+              <button class="btn btn-primary" type="submit" *ngIf="productForm.valid?'disabled':''">Lưu</button>
             </div>
 
           </form>
@@ -210,4 +247,3 @@
 
   </div>
 </div>
-

@@ -27,10 +27,6 @@ public class AuthController {
     @Autowired
     private JWTProvider jwtProvider;
 
-
-    /**
-     * Function: login with only username and password
-     */
     @PostMapping("/login")
 
     public ResponseEntity<?> login( @RequestBody SignInForm signInForm ) {

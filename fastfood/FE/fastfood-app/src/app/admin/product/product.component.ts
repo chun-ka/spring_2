@@ -4,7 +4,7 @@ import {FoodService} from '../../food/food.service';
 import {Food} from '../../entity/food/food';
 import {FoodJson} from '../../entity/food/food-json';
 import {Category} from '../../entity/food/category';
-import {FormControl, FormGroup} from '@angular/forms';
+import {FormControl, FormGroup, Validators} from '@angular/forms';
 import Swal from 'sweetalert2';
 import {Observable} from 'rxjs';
 import {finalize} from 'rxjs/operators';
@@ -22,6 +22,7 @@ export class ProductComponent implements OnInit {
   page: number = 0;
   foods: Food[] = [];
   food: Food = {price: 0};
+  foodEdit:Food={price: 0};
   categorys: Category[] = [];
   foodPage!: FoodJson;
   selectedImage: any = null;
@@ -33,11 +34,11 @@ export class ProductComponent implements OnInit {
     this.titleProduct='titleList';
     this.productForm = new FormGroup({
       idFood: new FormControl(),
-      name: new FormControl(),
-      img: new FormControl(),
-      category: new FormControl(),
-      price: new FormControl(),
-      promotion: new FormControl(),
+      name: new FormControl('',[Validators.required]),
+      img: new FormControl('',[Validators.required]),
+      category: new FormControl('',[Validators.required]),
+      price: new FormControl('',[Validators.required]),
+      promotion: new FormControl('',[Validators.required]),
     });
   }
 
@@ -63,6 +64,7 @@ export class ProductComponent implements OnInit {
             if (url) {
               // lấy lại url
               this.fb = url;
+              this.foodEdit.img=url;
             }
             this.productForm.patchValue({img: url});
             // console.log('link: ', this.fb);
@@ -78,24 +80,35 @@ export class ProductComponent implements OnInit {
   }
 
   titleEdit() {
+    this.productForm.reset();
+    this.foodEdit=this.food;
+    this.titleProduct = 'titleEdit';
     if (!this.food.idFood){
+      this.titleList();
       Swal.fire(
-        'Good job!',
+        'Thông báo!',
         'Chọn sản phẩm cần chỉnh sửa!',
         'warning'
       )
     }
-    this.titleProduct = 'titleEdit';
     this.productForm.patchValue(this.food);
     this.ngOnInit();
-
   }
 
   titleDelete() {
     this.titleProduct = 'titleDelete';
+    if (!this.food.idFood){
+      this.titleList();
+      Swal.fire(
+        'Thông báo!',
+        'Chọn sản phẩm cần xóa!',
+        'warning'
+      )
+    }
   }
 
   titleCreate() {
+    this.productForm.reset();
     this.food={price:0};
     this.titleProduct = 'titleCreate';
     this.ngOnInit();
@@ -104,7 +117,6 @@ export class ProductComponent implements OnInit {
 
   getIdClick(food: any) {
     this.food = food;
-    // console.log(food);
   }
 
   changePage(page: number) {
@@ -116,7 +128,6 @@ export class ProductComponent implements OnInit {
     this.foodService.getListFood(category, page).subscribe(data => {
       this.foods = data.content;
       this.foodPage = data;
-      // console.log(this.foods);
     });
   }
 
@@ -134,7 +145,6 @@ export class ProductComponent implements OnInit {
 
   create() {
     this.food = this.productForm.value;
-
     this.foodService.saveFood(this.food).subscribe(data => {
       // console.log(data);
       this.titleList();
@@ -144,9 +154,9 @@ export class ProductComponent implements OnInit {
         title: 'Thêm mới sản phẩm thành công!',
         showConfirmButton: false,
         timer: 2500
-      },)
-
+      });
     });
+    this.productForm.reset();
   }
 
   compareWithCategory(o1: Category, o2: Category): boolean {
@@ -161,23 +171,35 @@ export class ProductComponent implements OnInit {
         title: 'Chỉnh sửa sản phẩm thành công!',
         showConfirmButton: false,
         timer: 2500
-      },)
+      })
       this.titleList();
       this.ngOnInit();
-    })
+    });
+    this.productForm.reset();
   }
 
   delete(idFood: any) {
     this.foodService.deleteFood(idFood).subscribe(data=>{
       this.titleProduct = 'titleList';
       this.ngOnInit();
+      Swal.fire({
+        position: 'top',
+        icon: 'success',
+        title: 'Xóa thành công!',
+        showConfirmButton: false,
+        timer: 2500
+      });
+    });
 
-    })
   }
 
   noDelete() {
     this.titleProduct = 'titleList';
     this.ngOnInit();
 
+  }
+
+  get productFormValue(){
+    return this.productForm.controls;
   }
 }

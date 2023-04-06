@@ -14,6 +14,7 @@ export class CartService {
   URL_CART_QUANTITY = 'http://localhost:8080/cart/quantity';
   URL_REMOVE_CART = 'http://localhost:8080/cart/remove';
   URL_UPDATE_CART = 'http://localhost:8080/cart/update';
+  URL_UPDATE_HISTORY = 'http://localhost:8080/cart/history';
 
   constructor(private httpClient: HttpClient) {
   }
@@ -26,8 +27,8 @@ export class CartService {
     return this.httpClient.get<any[]>(this.URL_CART_LIST + '?userId=' + userId);
   }
 
-  removeCart(idFood: any): Observable<any> {
-    return this.httpClient.get<any>(this.URL_REMOVE_CART + '?idFood=' + idFood);
+  removeCart(idFood: any, orderId: any): Observable<any> {
+    return this.httpClient.get<any>(this.URL_REMOVE_CART + '?idFood=' + idFood+'&orderId='+orderId);
   }
 
   getCart(foodId: any, orderId: any): Observable<any> {
@@ -43,4 +44,7 @@ export class CartService {
     return this.httpClient.get<Total>(this.URL_CART_QUANTITY + '?userId=' + userId);
   }
 
+  getHistory(startDay: any, endDay: any, userId: number, page: number):Observable<any>{
+    return this.httpClient.get<any>(this.URL_UPDATE_HISTORY+'?startDay='+startDay+'&endDay='+endDay+'&userId=' +userId+'&page='+page);
+  }
 }

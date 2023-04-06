@@ -7,7 +7,7 @@
     <header class="header_section" style="padding: 0px;">
       <div class="container-fluid" style="background-color: #222831;height: 80px">
         <nav class="navbar navbar-expand-lg custom_nav-container ">
-          <a class="navbar-brand" routerLink="/about">
+          <a class="navbar-brand"  routerLink="/menu/:name">
             <span>
               TrungNQ
             </span>
@@ -131,7 +131,7 @@
             <h1 class="text-center" style="color: white">Đăng nhập </h1>
             <form [formGroup]="form" (ngSubmit)="login()">
               <div class="mb-3 mt-3">
-                <label for="email">Email</label>
+                <label for="email">Tên đăng nhập</label>
                 <input type="email" id="email" class="form-control" formControlName="username">
               </div>
               <div class="mb-3 mt-3">

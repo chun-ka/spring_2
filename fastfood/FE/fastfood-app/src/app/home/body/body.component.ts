@@ -29,9 +29,9 @@ export class BodyComponent implements OnInit {
 
   isLogged = false;
   carts: any = [];
-  orderId = 0;
-  userId: number = 0;
-
+  orderId: any;
+  userId: any;
+  orderIdFood:number=0;
 
   constructor(private foodService: FoodService,
               private token: TokenService,
@@ -72,17 +72,31 @@ export class BodyComponent implements OnInit {
   }
 
   getOrderId() {
-    this.isLogged = this.token.isLogger();
-    if (this.isLogged) {
-      this.userId = Number(this.token.getId());
-      this.orderService.getCartOrder(this.userId).subscribe(data => {
-        if (data != null) {
-          this.orderId = Number(data.idOrders);
-          console.log(this.orderId);
-        }
-      });
-    }
+    this.share.getDataOrderId.subscribe(data => {
+      this.orderId = data.id;
+    });
+    if (this.orderId == 0) {
+      this.isLogged = this.token.isLogger();
+      if (this.isLogged) {
+        this.userId = this.token.getId();
 
+        // getOrderId
+        this.orderService.getCartOrder(this.userId).subscribe(data => {
+          if (data != null) {
+            this.orderId = data.idOrders;
+          }
+        }, error => {
+          this.orderService.insertUser(this.userId).subscribe(data => {
+            if (data != null) {
+              this.orderService.getListOrder().subscribe(data => {
+                this.orderId = data.length;
+                console.log(this.orderId);
+              });
+            }
+          });
+        });
+      }
+    }
   }
 
   getListFoodPromotion(page: number) {
@@ -113,25 +127,24 @@ export class BodyComponent implements OnInit {
 
   previousFoodPromotion(pagePromotion: number) {
     this.pagePromotion = pagePromotion;
-    this.ngOnInit();
-
+    this.getListFoodPromotion(this.pagePromotion);
   }
 
   nextFoodPromotion(pagePromotion: number) {
     this.pagePromotion = pagePromotion;
-    this.ngOnInit();
+    this.getListFoodPromotion(this.pagePromotion);
 
   }
 
   nextFoodFamous(pageFamous: number) {
     this.pageFamous = pageFamous;
-    this.ngOnInit();
+    this.getListFoodFamous(this.pageFamous);
 
   }
 
   previousFoodFamous(pageFamous: number) {
     this.pageFamous = pageFamous;
-    this.ngOnInit();
+    this.getListFoodFamous(this.pageFamous);
 
   }
 
@@ -156,24 +169,21 @@ export class BodyComponent implements OnInit {
 
 
   async addToCart(f: Food) {
+    console.log(this.orderId);
     this.isLogged = this.token.isLogger();
     if (this.isLogged) {
-      this.getOrderId();
       await
         this.cartService.getCart(f.idFood, this.orderId).subscribe(data => {
           if (data) {
             this.cartService.updateCart(1, f.idFood, this.orderId).subscribe(data => {
-              console.log('alo');
               this.changeQuantityByShare();
             });
           } else {
             this.cartService.insertCart(1, f.idFood, this.orderId).subscribe(data => {
               this.changeQuantityByShare();
-              console.log('123');
             });
           }
         }, error => {
-          console.log('ok');
         });
     } else {
       this.carts = this.token.getCart();
@@ -204,14 +214,14 @@ export class BodyComponent implements OnInit {
       icon: 'success',
       title: 'Sản phẩm đã được thêm vào giỏ hàng!',
       showConfirmButton: false,
-      timer: 1000
+      timer: 1500
     });
   }
 
   addToCartDetail(f: Food, quantity: string) {
+    console.log(this.orderId);
     this.isLogged = this.token.isLogger();
     if (this.isLogged) {
-      this.getOrderId();
       this.cartService.getCart(f.idFood, this.orderId).subscribe(data => {
         if (data) {
           this.cartService.updateCart(parseInt(quantity), f.idFood, this.orderId).subscribe(data => {
@@ -252,7 +262,7 @@ export class BodyComponent implements OnInit {
       icon: 'success',
       title: 'Sản phẩm đã được thêm vào giỏ hàng!',
       showConfirmButton: false,
-      timer: 1000
+      timer: 1500
     });
   }
 }
