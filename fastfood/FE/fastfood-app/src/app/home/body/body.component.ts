@@ -31,7 +31,7 @@ export class BodyComponent implements OnInit {
   carts: any = [];
   orderId: any;
   userId: any;
-  orderIdFood:number=0;
+  orderIdFood: number = 0;
 
   constructor(private foodService: FoodService,
               private token: TokenService,
@@ -57,11 +57,12 @@ export class BodyComponent implements OnInit {
           this.share.changeData({
             quantity: data.totalQuantity,
           });
+        } else {
+          this.share.changeData({
+            quantity: 0,
+          });
         }
       }, error => {
-        this.share.changeData({
-          quantity: 0,
-        });
       });
     } else {
       this.share.changeData({
@@ -82,18 +83,21 @@ export class BodyComponent implements OnInit {
 
         // getOrderId
         this.orderService.getCartOrder(this.userId).subscribe(data => {
+          console.log(data);
           if (data != null) {
             this.orderId = data.idOrders;
+          } else {
+            this.orderService.insertUser(this.userId).subscribe(data => {
+              if (data != null) {
+                this.orderService.getListOrder().subscribe(data => {
+                  this.orderId = data.length;
+                  console.log(this.orderId);
+                });
+              }
+            });
           }
         }, error => {
-          this.orderService.insertUser(this.userId).subscribe(data => {
-            if (data != null) {
-              this.orderService.getListOrder().subscribe(data => {
-                this.orderId = data.length;
-                console.log(this.orderId);
-              });
-            }
-          });
+
         });
       }
     }

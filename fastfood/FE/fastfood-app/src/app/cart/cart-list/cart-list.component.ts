@@ -68,11 +68,14 @@ export class CartListComponent implements OnInit {
     if (this.isLogged) {
       this.userId = Number(this.token.getId());
       this.cartService.getListCart(this.userId).subscribe(data => {
-        this.carts = data;
-        // console.log(data);
-        this.getTotalAndSale(this.carts);
+        if (data){
+          this.carts = data;
+          this.getTotalAndSale(this.carts);
+        }else {
+          this.carts = [];
+          console.log(this.carts);
+        }
       }, error => {
-        this.carts = [];
       });
     } else {
       this.carts = this.token.getCart();
@@ -87,11 +90,12 @@ export class CartListComponent implements OnInit {
           this.share.changeData({
             quantity: data.totalQuantity,
           });
+        } else {
+          this.share.changeData({
+            quantity: 0,
+          });
         }
       }, error => {
-        this.share.changeData({
-          quantity: 0,
-        });
       });
     } else {
       this.share.changeData({
@@ -115,16 +119,18 @@ export class CartListComponent implements OnInit {
           if (data != null) {
             this.orderId = Number(data.idOrders);
             console.log(this.orderId);
+          }else {
+            this.orderService.insertUser(this.userId).subscribe(data => {
+              if (data != null) {
+                this.orderService.getListOrder().subscribe(data => {
+                  this.orderId = data.length;
+                  console.log(this.orderId);
+                });
+              }
+            });
           }
-        },error => {
-          this.orderService.insertUser(this.userId).subscribe(data => {
-            if (data != null) {
-              this.orderService.getListOrder().subscribe(data => {
-                this.orderId = data.length;
-                console.log(this.orderId);
-              });
-            }
-          });
+        }, error => {
+
         });
       }
     }
@@ -205,7 +211,7 @@ export class CartListComponent implements OnInit {
     console.log(this.orderId);
     this.isLogged = this.token.isLogger();
     if (this.isLogged) {
-      this.cartService.removeCart(this.carts[index].id,this.orderId).subscribe(data => {
+      this.cartService.removeCart(this.carts[index].id, this.orderId).subscribe(data => {
         this.changeQuantityByShare();
         this.totalPriceFood = 0;
         this.saleFood = 0;

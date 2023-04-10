@@ -1,5 +1,5 @@
 import {Component, DoCheck, OnInit} from '@angular/core';
-import {FormControl, FormGroup} from '@angular/forms';
+import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {Title} from '@angular/platform-browser';
 import {LoginService} from '../../security/service/login.service';
 import {TokenService} from '../../security/service/token.service';
@@ -31,11 +31,11 @@ export class HeaderComponent implements OnInit, DoCheck {
     rememberMe: new FormControl(false)
   });
   registerForm = new FormGroup({
-    username: new FormControl(),
-    name: new FormControl(),
-    email: new FormControl(),
-    password: new FormControl(),
-    roles: new FormControl('customer')
+    username: new FormControl('',[Validators.required]),
+    name: new FormControl('',[Validators.required]),
+    email: new FormControl('',[Validators.required]),
+    password: new FormControl('',[Validators.required]),
+    roles: new FormControl(' ROLE_USER')
   });
 
 
@@ -55,9 +55,10 @@ export class HeaderComponent implements OnInit, DoCheck {
     if (this.isLogged) {
       this.role = this.token.getRole();
     }
-    if (this.role!='ROLE_ADMIN'){
+    if (this.role != 'ROLE_ADMIN') {
       this.changeQuantityByShare();
-      this.getQuantityByShare();}
+      this.getQuantityByShare();
+    }
   }
 
   getQuantityByShare() {
@@ -68,7 +69,7 @@ export class HeaderComponent implements OnInit, DoCheck {
 
   changeQuantityByShare() {
     this.isLogged = this.token.isLogger();
-    if (this.isLogged && this.role!='ROLE_ADMIN') {
+    if (this.isLogged && this.role != 'ROLE_ADMIN') {
       this.userId = this.token.getId();
       this.cartService.getTotalQuantity(this.userId).subscribe(data => {
         if (data) {
@@ -168,29 +169,30 @@ export class HeaderComponent implements OnInit, DoCheck {
           this.orderId = data.idOrders;
           console.log(this.orderId);
           this.insertCart();
-          let _this=this;
-          setTimeout(function(){
+          let _this = this;
+          setTimeout(function() {
             _this.share.changeDataOrderId({
-              id:_this.orderId ,
+              id: _this.orderId,
             });
-          },500)
-
+          }, 500);
+        } else {
+          this.orderService.insertUser(this.userId).subscribe(data => {
+            if (data != null) {
+              this.orderService.getListOrder().subscribe(data => {
+                this.orderId = data.length;
+                this.insertCart();
+                let _this = this;
+                setTimeout(function() {
+                  _this.share.changeDataOrderId({
+                    id: _this.orderId,
+                  });
+                }, 500);
+              });
+            }
+          });
         }
       }, error => {
-        this.orderService.insertUser(this.userId).subscribe(data => {
-          if (data != null) {
-            this.orderService.getListOrder().subscribe(data => {
-              this.orderId = data.length;
-              this.insertCart();
-              let _this=this;
-              setTimeout(function(){
-                _this.share.changeDataOrderId({
-                  id:_this.orderId ,
-                });
-              },500)
-            });
-          }
-        });
+
       });
     }
   }

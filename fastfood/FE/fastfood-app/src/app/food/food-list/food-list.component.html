@@ -29,7 +29,7 @@
                 <div class="options">
                   <h6 style="font-family: Dancing Script"> Giá : {{f.price | currency:'VND':''}}đ</h6>
 
-                  <a  (click)="addToCart(f)" style="cursor: pointer">
+                  <a  (click)="addToCart(f)" style="cursor: pointer" *ngIf="role != 'ROLE_ADMIN'">
                     <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg"
                          xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 456.029 456.029"
                          style="enable-background:new 0 0 456.029 456.029;" xml:space="preserve">
@@ -121,7 +121,7 @@
             <p class="category" *ngIf="food.describeFood"><span><b>Mô tả</b></span>: {{food.describeFood}} </p>
             <p class="category"><span><b>Phân loại</b></span>: {{food.category?.name}} </p>
             <p class="category" *ngIf="food.promotion!=0"><span><b>Khuyến mãi</b></span>: {{food.promotion}}%</p>
-            <p class="category"><span><b>Số lượng</b>:</span><input type="number" min="1" [(ngModel)]="this.quantity"
+            <p class="category" ><span><b>Số lượng</b>:</span><input type="number" min="1" [(ngModel)]="this.quantity"
                                                                     style="width: 40px;margin-left: 10px" #quantityHtlm
                                                                     (change)="updateQuantity($event)"/></p>
             <p class="category" *ngIf="this.price>food.price ;else elseBlock">
@@ -129,7 +129,7 @@
             <ng-template #elseBlock>
               <p class="category"><span><b>Giá tiền</b></span>: {{this.pricePromotion | currency:'VND':''}}đ</p>
             </ng-template>
-            <button class="btn btn-warning" style="background-color:orange;height: 40px;color: white" (click)="addToCartDetail(food,quantityHtlm.value)" data-bs-dismiss="modal">Thêm vào giỏ hàng</button>
+            <button class="btn btn-warning" style="background-color:orange;height: 40px;color: white" (click)="addToCartDetail(food,quantityHtlm.value)" data-bs-dismiss="modal" *ngIf="role != 'ROLE_ADMIN'">Thêm vào giỏ hàng</button>
           </div>
         </div>
       </div>

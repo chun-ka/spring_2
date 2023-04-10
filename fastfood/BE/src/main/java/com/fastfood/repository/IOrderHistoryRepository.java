@@ -48,11 +48,11 @@ public interface IOrderHistoryRepository extends JpaRepository<OrderHistory, Lon
             "    join orders o on u.id_user=o.user_id_user " +
             "    join order_history oh on o.id_orders=oh.orders_id_orders " +
             "    join food f on f.id_food=oh.food_id_food " +
-            " where `date` between :startDay and :endDay and u.id_user=:userId and o.status=false and oh.flag_order_history=true ",
+            " where `date` between :startDay and :endDay and u.id_user=:userId and o.status=false and oh.flag_order_history=true order by purchaseDate desc",
     countQuery = "select f.promotion as priceSale,f.name as name,oh.quantity as quantity,o.date as purchaseDate,f.price as price from user u " +
             "    join orders o on u.id_user=o.user_id_user " +
             "    join order_history oh on o.id_orders=oh.orders_id_orders " +
             "    join food f on f.id_food=oh.food_id_food " +
-            " where `date` between :startDay and :endDay and u.id_user=:userId and o.status=false and oh.flag_order_history=true ",nativeQuery = true)
+            " where `date` between :startDay and :endDay and u.id_user=:userId and o.status=false and oh.flag_order_history=true  order by purchaseDate desc",nativeQuery = true)
     Page<OrderHistoryDto> getHistory(@Param("startDay") String startDay, @Param("endDay") String endDay, @Param("userId") Long userId, Pageable pageable);
 }

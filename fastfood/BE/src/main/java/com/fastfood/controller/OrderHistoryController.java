@@ -53,9 +53,9 @@ public class OrderHistoryController {
     @GetMapping("/list")
     public ResponseEntity<List<OrderHistoryDto>> getListOrderHistory(@RequestParam Long userId){
         List<OrderHistoryDto> orderHistoryDtos=iOrderHistoryService.getListOrderHistory(userId);
-        if (orderHistoryDtos.isEmpty()){
-            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
-        }
+//        if (orderHistoryDtos.isEmpty()){
+//            return new ResponseEntity<>(HttpStatus.OK);
+//        }
         return new ResponseEntity<>(orderHistoryDtos,HttpStatus.OK);
     }
 
@@ -71,9 +71,6 @@ public class OrderHistoryController {
     @GetMapping("/quantity")
     public ResponseEntity<ToTalQuantity> getToTalQuantity(@RequestParam Long userId){
         ToTalQuantity toTalQuantity=iOrderHistoryService.getToTalQuantity(userId);
-        if (toTalQuantity==null){
-            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
-        }
         return new ResponseEntity<>(toTalQuantity,HttpStatus.OK);
     }
 

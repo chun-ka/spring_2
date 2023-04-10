@@ -55,7 +55,7 @@
                   </div>
                 </div>
                 <div style="text-align: center;">
-                  <button class="btn btn-primary" type="submit" *ngIf="categoryForm.valid?'disabled':''" >Thêm mới</button>
+                  <button class="btn btn-primary" type="submit" [disabled]="!categoryForm.valid" >Thêm mới</button>
                 </div>
               </form>
             </div>
@@ -84,7 +84,7 @@
                   </div>
                 </div>
                 <div style="text-align: center;">
-                  <button class="btn btn-primary" type="submit"  *ngIf="categoryForm.valid?'disabled':''" >Lưu</button>
+                  <button class="btn btn-primary" type="submit"  [disabled]="!categoryForm.valid" >Lưu</button>
                 </div>
               </form>
             </div>

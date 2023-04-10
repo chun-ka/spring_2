@@ -49,4 +49,5 @@ public class User {
 
     public User(String username, String encode, String name, String email) {
     }
+
 }

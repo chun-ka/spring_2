@@ -23,12 +23,13 @@ export class FoodListComponent implements OnInit {
   pricePromotion: number = 0;
   quantity = 1;
   orderId: any;
-  actives:any=[];
+  actives: any = [];
 
   carts: any = [];
   isLogged = false;
   userId: any;
   total: Total = {};
+  role = 'none';
 
 
   constructor(private foodService: FoodService,
@@ -54,13 +55,16 @@ export class FoodListComponent implements OnInit {
 
     this.foodService.getListCategory().subscribe(data => {
       this.categorys = data;
-      for (let i = 0; i < this.categorys.length; i++) {
-        this.actives[i]='';
+      this.actives[0] = 'active';
+      for (let i = 1; i < this.categorys.length; i++) {
+        this.actives[i] = '';
       }
     });
 
     this.isLogged = this.token.isLogger();
-
+    if (this.isLogged) {
+      this.role = this.token.getRole();
+    }
   }
 
   ngOnInit(): void {
@@ -68,6 +72,7 @@ export class FoodListComponent implements OnInit {
     this.isLogged = this.token.isLogger();
     window.scroll(0, 500);
     this.changeQuantityByShare();
+
   }
 
   changeQuantityByShare() {
@@ -79,11 +84,12 @@ export class FoodListComponent implements OnInit {
           this.share.changeData({
             quantity: data.totalQuantity,
           });
+        } else {
+          this.share.changeData({
+            quantity: 0,
+          });
         }
       }, error => {
-        this.share.changeData({
-          quantity: 0,
-        });
       });
     } else {
       this.share.changeData({
@@ -94,39 +100,44 @@ export class FoodListComponent implements OnInit {
   }
 
   getOrderId() {
-    this.share.getDataOrderId.subscribe(data => {
-      this.orderId = data.id;
-      console.log(this.orderId);
-    });
-    if (this.orderId == 0) {
-      this.isLogged = this.token.isLogger();
-      if (this.isLogged) {
-        this.userId = this.token.getId();
-        // getOrderId
-        this.orderService.getCartOrder(this.userId).subscribe(data => {
-          if (data != null) {
-            this.orderId = data.idOrders;
-            console.log(this.orderId);
-          }
-        }, error => {
-          this.orderService.insertUser(this.userId).subscribe(data => {
+    if (this.role != 'ROLE_ADMIN') {
+      this.share.getDataOrderId.subscribe(data => {
+        this.orderId = data.id;
+        console.log(this.orderId);
+      });
+      if (this.orderId == 0) {
+        this.isLogged = this.token.isLogger();
+        if (this.isLogged) {
+          this.userId = this.token.getId();
+          // getOrderId
+          this.orderService.getCartOrder(this.userId).subscribe(data => {
             if (data != null) {
-              this.orderService.getListOrder().subscribe(data => {
-                this.orderId = data.length;
+              this.orderId = data.idOrders;
+              console.log(this.orderId);
+            }else {
+              this.orderService.insertUser(this.userId).subscribe(data => {
+                if (data != null) {
+                  this.orderService.getListOrder().subscribe(data => {
+                    this.orderId = data.length;
+                  });
+                }
               });
             }
+          }, error => {
+
           });
-        });
+        }
       }
     }
   }
 
 
   category(categoryId: any, index: number) {
+
     for (let i = 0; i < this.actives.length; i++) {
-      this.actives[i]='';
+      this.actives[i] = '';
     }
-    this.actives[index]='active';
+    this.actives[index] = 'active';
     this.foodService.getListFoodByCategory(categoryId).subscribe(data => {
       if (data != null) {
         this.foodList = data;

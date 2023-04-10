@@ -94,7 +94,7 @@
                 </div>
               </div>
               <div style="text-align: center;">
-                <button class="btn btn-primary" type="submit" *ngIf="formUser.valid?'disabled':''">Lưu thông tin</button>
+                <button class="btn btn-primary" type="submit" [disabled]="!formUser.valid" >Lưu thông tin</button>
               </div>
 
             </form>

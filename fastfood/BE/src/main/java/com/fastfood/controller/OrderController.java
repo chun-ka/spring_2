@@ -42,9 +42,6 @@ public class OrderController {
     @GetMapping("/cart")
     public ResponseEntity<Orders> getCartOrder(@RequestParam Long userId){
         Orders order=iOrderService.getCartOrder(userId);
-        if (order==null){
-            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
-        }
         return new ResponseEntity<>(order,HttpStatus.OK);
     }
 

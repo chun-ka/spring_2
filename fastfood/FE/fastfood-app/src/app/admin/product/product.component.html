@@ -156,7 +156,7 @@
               </div>
             </div>
             <div style="text-align: center;">
-              <button class="btn btn-primary" type="submit" *ngIf="productForm.valid?'disabled':''" >Thêm mới</button>
+              <button class="btn btn-primary" type="submit" [disabled]="!productForm.valid" >Thêm mới</button>
             </div>
 
           </form>
@@ -214,7 +214,7 @@
               </div>
             </div>
             <div style="text-align: center;">
-              <button class="btn btn-primary" type="submit" *ngIf="productForm.valid?'disabled':''">Lưu</button>
+              <button class="btn btn-primary" type="submit" [disabled]="!productForm.valid">Lưu</button>
             </div>
 
           </form>
