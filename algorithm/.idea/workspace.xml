@@ -1,6 +1,192 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="f16517d7-41fa-46ec-bd8f-1595d82db58f" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/../README.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Tài liệu/~$ giải thuật.docx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dbnavigator.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dbnavigator.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/1/4/14680cec7ebb88e40cf15b57c788e13190b895b9" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/2/0/20d357cb80ad6cc6010c609053247ed44053a684" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/2/3/233afe3e8b58f3cf34789b191fc9af2453532198" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/2/8/285b342f5ea32ce344a86caa1b4f9c8784ebbf85" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/3/9/39e1369dd6c1903a8ca2081b4eaae2d75419838c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/4/4/441b1311260b310596c579f521620a7d791419ae" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/7/c/7c015d533a495b565f045350c5095a96a982955b" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/9/3/93e0a356406604eb52af12905da1fdae33a514e4" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/c/7/c78eb18991d4586d905d4c608e4081dacbab798d" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/f/2/f242c0dd8498ddf4c54698167e57e286234cb748" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/index.pb" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/sonarlint/issuestore/index.pb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/securityhotspotstore/1/4/14680cec7ebb88e40cf15b57c788e13190b895b9" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/securityhotspotstore/2/0/20d357cb80ad6cc6010c609053247ed44053a684" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/securityhotspotstore/2/3/233afe3e8b58f3cf34789b191fc9af2453532198" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/securityhotspotstore/2/8/285b342f5ea32ce344a86caa1b4f9c8784ebbf85" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/securityhotspotstore/3/9/39e1369dd6c1903a8ca2081b4eaae2d75419838c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/securityhotspotstore/4/4/441b1311260b310596c579f521620a7d791419ae" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/securityhotspotstore/7/c/7c015d533a495b565f045350c5095a96a982955b" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/securityhotspotstore/9/3/93e0a356406604eb52af12905da1fdae33a514e4" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/securityhotspotstore/c/7/c78eb18991d4586d905d4c608e4081dacbab798d" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/securityhotspotstore/f/2/f242c0dd8498ddf4c54698167e57e286234cb748" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/securityhotspotstore/index.pb" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/sonarlint/securityhotspotstore/index.pb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/a_263/src/A264.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/count_string/.idea/sonarlint/issuestore/4/a/4a831b10439099d44774d0ccc387e808deffaeab" beforeDir="false" afterPath="$PROJECT_DIR$/count_string/.idea/sonarlint/issuestore/4/a/4a831b10439099d44774d0ccc387e808deffaeab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/algorithm/A265.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/algorithm/A265.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/algorithm/A271.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/algorithm/A271.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/algorithm/A273.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/algorithm/A273.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/algorithm/A274.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/algorithm/A274.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/algorithm/A275.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/algorithm/A275.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/algorithm/A285.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/algorithm/A285.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/A265.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/A265.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/A270.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/A270.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/A271.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/A271.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/A273.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/A273.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/A274.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/A274.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/A275.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/A275.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/A277.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/A277.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/A278.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/A278.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/A285.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/A285.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/OCA10.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/OCA10.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/demo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/demo.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/out/production/algorithm/A270.class" beforeDir="false" afterPath="$PROJECT_DIR$/src/out/production/algorithm/A270.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../bootstrap-footer-15/css/bootstrap.min.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../bootstrap-footer-15/css/bootstrap/mixins/_transition.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../bootstrap-footer-15/css/bootstrap/mixins/_visibility.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../bootstrap-footer-15/css/ionicons.min.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../bootstrap-footer-15/css/style.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../bootstrap-footer-15/js/bootstrap.min.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../bootstrap-footer-15/js/jquery.min.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../bootstrap-footer-15/js/main.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../bootstrap-footer-15/js/popper.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../bootstrap-footer-15/scss/style.scss" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../food/Login.html" beforeDir="false" afterPath="$PROJECT_DIR$/../food/Login.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../food/about.html" beforeDir="false" afterPath="$PROJECT_DIR$/../food/about.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../food/cart.html" beforeDir="false" afterPath="$PROJECT_DIR$/../food/cart.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../food/contact.html" beforeDir="false" afterPath="$PROJECT_DIR$/../food/contact.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../food/css/bootstrap.css" beforeDir="false" afterPath="$PROJECT_DIR$/../food/css/bootstrap.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../food/css/sty.css" beforeDir="false" afterPath="$PROJECT_DIR$/../food/css/sty.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../food/css/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/../food/css/style.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../food/css/style.scss" beforeDir="false" afterPath="$PROJECT_DIR$/../food/css/style.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../food/detail.html" beforeDir="false" afterPath="$PROJECT_DIR$/../food/detail.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../food/home.html" beforeDir="false" afterPath="$PROJECT_DIR$/../food/home.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../food/menu.html" beforeDir="false" afterPath="$PROJECT_DIR$/../food/menu.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../food/pagination.html" beforeDir="false" afterPath="$PROJECT_DIR$/../food/pagination.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../project-demo/hml/footer.html" beforeDir="false" afterPath="$PROJECT_DIR$/../project-demo/hml/footer.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../project-demo/hml/header.html" beforeDir="false" afterPath="$PROJECT_DIR$/../project-demo/hml/header.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../project-demo/hml/home.html" beforeDir="false" afterPath="$PROJECT_DIR$/../project-demo/hml/home.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../project-demo/hml/img/img1" beforeDir="false" afterPath="$PROJECT_DIR$/../project-demo/hml/img/img1" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../project-demo/hml/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/../project-demo/hml/style.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../web đồ ăn nhanh 2/fonts/fontawesome-webfont.ttf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../web đồ ăn nhanh 2/fonts/fontawesome-webfont.woff" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../web đồ ăn nhanh 2/fonts/fontawesome-webfont.woff2" beforeDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+        <option value="Interface" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+  </component>
+  <component name="GitSEFilterConfiguration">
+    <file-type-list>
+      <filtered-out-file-type name="LOCAL_BRANCH" />
+      <filtered-out-file-type name="REMOTE_BRANCH" />
+      <filtered-out-file-type name="TAG" />
+      <filtered-out-file-type name="COMMIT_BY_MESSAGE" />
+    </file-type-list>
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="ProjectId" id="2NLqjdKHIbwnUGJf3dZCrVwnvQh" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
   <component name="PropertiesComponent">
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="settings.editor.selected.configurable" value="Errors" />
+  </component>
+  <component name="RunManager" selected="Application.A285">
+    <configuration name="A277" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="A277" />
+      <module name="algorithm" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="A278" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="A278" />
+      <module name="algorithm" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="A285" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="A285" />
+      <module name="algorithm" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="OCA10" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="OCA10" />
+      <module name="algorithm" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="demo" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="demo" />
+      <module name="algorithm" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Application.A285" />
+        <item itemvalue="Application.demo" />
+        <item itemvalue="Application.A277" />
+        <item itemvalue="Application.A278" />
+        <item itemvalue="Application.OCA10" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="f16517d7-41fa-46ec-bd8f-1595d82db58f" name="Changes" comment="" />
+      <created>1679453845422</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1679453845422</updated>
+    </task>
+    <servers />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
   </component>
 </project>

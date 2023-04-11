@@ -7,177 +7,270 @@
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
 </head>
 <body>
-<section class="h-100 gradient-custom">
-  <div class="container py-5">
-    <div class="row d-flex justify-content-center my-4">
-      <div class="col-md-8">
-        <div class="card mb-4">
-          <div class="card-header py-3">
-            <h5 class="mb-0">Cart - 2 items</h5>
-          </div>
-          <div class="card-body">
-            <!-- Single item -->
+<section class="h-100 h-custom" style="background-color: #eee;">
+  <div class="container h-100 py-5">
+    <div class="row d-flex justify-content-center align-items-center h-100">
+      <div class="col">
+        <div class="card shopping-cart" style="border-radius: 15px;">
+          <div class="card-body text-black">
+
             <div class="row">
-              <div class="col-lg-3 col-md-12 mb-4 mb-lg-0">
-                <!-- Image -->
-                <div class="bg-image hover-overlay hover-zoom ripple rounded" data-mdb-ripple-color="light">
-                  <img src="https://mdbcdn.b-cdn.net/img/Photos/Horizontal/E-commerce/Vertical/12a.webp"
-                       class="w-100" alt="Blue Jeans Jacket" />
-                  <a href="#!">
-                    <div class="mask" style="background-color: rgba(251, 251, 251, 0.2)"></div>
-                  </a>
+              <div class="col-lg-6 px-5 py-4">
+
+                <h3 class="mb-5 pt-2 text-center fw-bold text-uppercase">Giỏ hàng</h3>
+
+                <div class="d-flex align-items-center mb-5">
+                  <div class="flex-shrink-0">
+                    <img src="images/f1.png"
+                         class="img-fluid" style="width: 130px;" alt="Generic placeholder image">
+                  </div>
+                  <div class="flex-grow-1 ms-3" style="margin-left: 20px">
+                    <a href="" class="float-end text-black"></a>
+                    <div class="row">
+                      <div class="col-7">
+                        <h5 class="text-primary">Pizza thập cẩm </h5>
+                      </div>
+                      <div class="col-5">
+                        <button style="color: red;border: none;background-color: white;margin-left: 100px" >
+                          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash3-fill" viewBox="0 0 16 16">
+                            <path d="M11 1.5v1h3.5a.5.5 0 0 1 0 1h-.538l-.853 10.66A2 2 0 0 1 11.115 16h-6.23a2 2 0 0 1-1.994-1.84L2.038 3.5H1.5a.5.5 0 0 1 0-1H5v-1A1.5 1.5 0 0 1 6.5 0h3A1.5 1.5 0 0 1 11 1.5Zm-5 0v1h4v-1a.5.5 0 0 0-.5-.5h-3a.5.5 0 0 0-.5.5ZM4.5 5.029l.5 8.5a.5.5 0 1 0 .998-.06l-.5-8.5a.5.5 0 1 0-.998.06Zm6.53-.528a.5.5 0 0 0-.528.47l-.5 8.5a.5.5 0 0 0 .998.058l.5-8.5a.5.5 0 0 0-.47-.528ZM8 4.5a.5.5 0 0 0-.5.5v8.5a.5.5 0 0 0 1 0V5a.5.5 0 0 0-.5-.5Z"/>
+                          </svg>
+                        </button>
+                      </div>
+                    </div>
+
+                    <h6 style="color: #9e9e9e;">Khuyến mãi: 20%</h6>
+                    <div class="d-flex align-items-center">
+                      <div class="def-number-input number-input safari_only" >
+                        <button onclick="this.parentNode.querySelector('input[type=number]').stepDown()"
+                                class="minus"></button>
+                        <input class="quantity fw-bold text-black" min="0" name="quantity" value="1"
+                               type="number">
+                        <button onclick="this.parentNode.querySelector('input[type=number]').stepUp()"
+                                class="plus"></button>
+                      </div>
+
+                      <p class="fw-bold mb-0 me-5 pe-3">Giá: 100000 đ</p>
+                    </div>
+                  </div>
                 </div>
-                <!-- Image -->
+
+                <div class="d-flex align-items-center mb-5">
+                  <div class="flex-shrink-0">
+                    <img src="images/f2.png"
+                         class="img-fluid" style="width: 130px;" alt="Generic placeholder image">
+                  </div>
+                  <div class="flex-grow-1 ms-3" style="margin-left: 20px">
+                    <div class="row">
+                      <div class="col-7">
+                        <h5 class="text-primary">03 GÀ GIÒN VUI VẺ + 02 MỲ Ý SỐT BÒ BẰM + 01 KHOAI TÂY VỪA + 03 LY PEPSI VỪA </h5>
+                      </div>
+                      <div class="col-5">
+                        <button style="color: red;border: none;background-color: white;margin-left: 100px" >
+                          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash3-fill" viewBox="0 0 16 16">
+                            <path d="M11 1.5v1h3.5a.5.5 0 0 1 0 1h-.538l-.853 10.66A2 2 0 0 1 11.115 16h-6.23a2 2 0 0 1-1.994-1.84L2.038 3.5H1.5a.5.5 0 0 1 0-1H5v-1A1.5 1.5 0 0 1 6.5 0h3A1.5 1.5 0 0 1 11 1.5Zm-5 0v1h4v-1a.5.5 0 0 0-.5-.5h-3a.5.5 0 0 0-.5.5ZM4.5 5.029l.5 8.5a.5.5 0 1 0 .998-.06l-.5-8.5a.5.5 0 1 0-.998.06Zm6.53-.528a.5.5 0 0 0-.528.47l-.5 8.5a.5.5 0 0 0 .998.058l.5-8.5a.5.5 0 0 0-.47-.528ZM8 4.5a.5.5 0 0 0-.5.5v8.5a.5.5 0 0 0 1 0V5a.5.5 0 0 0-.5-.5Z"/>
+                          </svg>
+                        </button>
+                      </div>
+                    </div>
+                    <div class="d-flex align-items-center">
+                      <div class="def-number-input number-input safari_only">
+                        <button onclick="this.parentNode.querySelector('input[type=number]').stepDown()"
+                                class="minus"></button>
+                        <input class="quantity fw-bold text-black" min="0" name="quantity" value="1"
+                               type="number">
+                        <button onclick="this.parentNode.querySelector('input[type=number]').stepUp()"
+                                class="plus"></button>
+                      </div>
+                      <p class="fw-bold mb-0 me-5 pe-3">Giá: 100000000 đ</p>
+
+                    </div>
+                  </div>
+                </div>
+
+                <div class="d-flex align-items-center mb-5">
+                  <div class="flex-shrink-0">
+                    <img src="images/f3.png"
+                         class="img-fluid" style="width: 130px;" alt="Generic placeholder image">
+                  </div>
+                  <div class="flex-grow-1 ms-3" style="margin-left: 20px">
+                    <a href="#!" class="float-end text-black"><i class="fas fa-times"></i></a>
+                    <div class="row">
+                      <div class="col-7">
+                        <h5 class="text-primary">Pizza tuyệt cú mèo </h5>
+                      </div>
+                      <div class="col-5">
+                        <button style="color: red;border: none;background-color: white;margin-left: 100px" >
+                          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash3-fill" viewBox="0 0 16 16">
+                            <path d="M11 1.5v1h3.5a.5.5 0 0 1 0 1h-.538l-.853 10.66A2 2 0 0 1 11.115 16h-6.23a2 2 0 0 1-1.994-1.84L2.038 3.5H1.5a.5.5 0 0 1 0-1H5v-1A1.5 1.5 0 0 1 6.5 0h3A1.5 1.5 0 0 1 11 1.5Zm-5 0v1h4v-1a.5.5 0 0 0-.5-.5h-3a.5.5 0 0 0-.5.5ZM4.5 5.029l.5 8.5a.5.5 0 1 0 .998-.06l-.5-8.5a.5.5 0 1 0-.998.06Zm6.53-.528a.5.5 0 0 0-.528.47l-.5 8.5a.5.5 0 0 0 .998.058l.5-8.5a.5.5 0 0 0-.47-.528ZM8 4.5a.5.5 0 0 0-.5.5v8.5a.5.5 0 0 0 1 0V5a.5.5 0 0 0-.5-.5Z"/>
+                          </svg>
+                        </button>
+                      </div>
+                    </div>
+                    <h6 style="color: #9e9e9e;">Khuyến mãi: 30%</h6>
+                    <div class="d-flex align-items-center">
+                      <div class="def-number-input number-input safari_only">
+                        <button onclick="this.parentNode.querySelector('input[type=number]').stepDown()"
+                                class="minus"></button>
+                        <input class="quantity fw-bold text-black" min="0" name="quantity" value="2"
+                               type="number">
+                        <button onclick="this.parentNode.querySelector('input[type=number]').stepUp()"
+                                class="plus"></button>
+                      </div>
+                      <p class="fw-bold mb-0 me-5 pe-3">Giá: 100000 đ</p>
+
+                    </div>
+                  </div>
+                </div>
+
+                <hr class="mb-4" style="height: 2px; background-color: #1266f1; opacity: 1;">
+
+                <div class="d-flex justify-content-between px-x">
+                  <p class="fw-bold">Bạn đã tiết kiệm:</p>
+                  <p class="fw-bold">50000 đ</p>
+                </div>
+                <div class="d-flex justify-content-between p-2 mb-2" style="background-color: #e1f5fe;">
+                  <h5 class="fw-bold mb-0">Tổng tiền:</h5>
+                  <h5 class="fw-bold mb-0">300000 đ</h5>
+                </div>
+
               </div>
+              <div class="col-lg-6 px-5 py-4">
 
-              <div class="col-lg-5 col-md-6 mb-4 mb-lg-0">
-                <!-- Data -->
-                <p><strong>Blue denim shirt</strong></p>
-                <p>Color: blue</p>
-                <p>Size: M</p>
-                <button type="button" class="btn btn-primary btn-sm me-1 mb-2" data-mdb-toggle="tooltip"
-                        title="Remove item">
-                  <i class="fas fa-trash"></i>
-                </button>
-                <button type="button" class="btn btn-danger btn-sm mb-2" data-mdb-toggle="tooltip"
-                        title="Move to the wish list">
-                  <i class="fas fa-heart"></i>
-                </button>
-                <!-- Data -->
-              </div>
+                <h3 class="mb-5 pt-2 text-center fw-bold text-uppercase">Thông tin nhận hàng</h3>
 
-              <div class="col-lg-4 col-md-6 mb-4 mb-lg-0">
-                <!-- Quantity -->
-                <div class="d-flex mb-4" style="max-width: 300px">
+                <form class="mb-5">
 
-                  <div class="form-outline">
-                    <input id="form1" min="0" name="quantity" value="1" type="number" class="form-control" />
-                    <label class="form-label" for="form1">Quantity</label>
+                  <div class="form-outline mb-4">
+                    <label class="form-label" for="name">Tên khách hàng:</label>
+
+                    <input type="text" id="name" class="form-control form-control-lg"/>
                   </div>
 
-                </div>
-                <!-- Quantity -->
-
-                <!-- Price -->
-                <p class="text-start text-md-center">
-                  <strong>$17.99</strong>
-                </p>
-                <!-- Price -->
-              </div>
-            </div>
-            <!-- Single item -->
-
-            <hr class="my-4" />
-
-            <!-- Single item -->
-            <div class="row">
-              <div class="col-lg-3 col-md-12 mb-4 mb-lg-0">
-                <!-- Image -->
-                <div class="bg-image hover-overlay hover-zoom ripple rounded" data-mdb-ripple-color="light">
-                  <img src="https://mdbcdn.b-cdn.net/img/Photos/Horizontal/E-commerce/Vertical/13a.webp"
-                       class="w-100" />
-                  <a href="#!">
-                    <div class="mask" style="background-color: rgba(251, 251, 251, 0.2)"></div>
-                  </a>
-                </div>
-                <!-- Image -->
-              </div>
-
-              <div class="col-lg-5 col-md-6 mb-4 mb-lg-0">
-                <!-- Data -->
-                <p><strong>Red hoodie</strong></p>
-                <p>Color: red</p>
-                <p>Size: M</p>
-
-                <button type="button" class="btn btn-primary btn-sm me-1 mb-2" data-mdb-toggle="tooltip"
-                        title="Remove item">
-                  <i class="fas fa-trash"></i>
-                </button>
-                <button type="button" class="btn btn-danger btn-sm mb-2" data-mdb-toggle="tooltip"
-                        title="Move to the wish list">
-                  <i class="fas fa-heart"></i>
-                </button>
-                <!-- Data -->
-              </div>
-
-              <div class="col-lg-4 col-md-6 mb-4 mb-lg-0">
-                <!-- Quantity -->
-                <div class="d-flex mb-4" style="max-width: 300px">
-
-                  <div class="form-outline">
-                    <input id="form1" min="0" name="quantity" value="1" type="number" class="form-control" />
-                    <label class="form-label" for="form1">Quantity</label>
+                  <div class="form-outline mb-4">
+                    <label class="form-label" for="phone">Số điện thoại:</label>
+                    <input type="number" id="phone" class="form-control form-control-lg"/>
                   </div>
 
+                  <div class="form-outline mb-4">
+                    <label class="form-label" for="address">Địa chỉ nhận hàng:</label>
+                    <input type="text" id="address" class="form-control form-control-lg" />
+                  </div>
 
-                </div>
-                <!-- Quantity -->
+<!--                  <div class="row">-->
+<!--                    <div class="col-md-6 mb-5">-->
+<!--                      <div class="form-outline">-->
+<!--                        <input type="text" id="typeExp" class="form-control form-control-lg" value="01/22"-->
+<!--                               size="7" id="exp" minlength="7" maxlength="7" />-->
+<!--                        <label class="form-label" for="typeExp">Expiration</label>-->
+<!--                      </div>-->
+<!--                    </div>-->
+<!--                    <div class="col-md-6 mb-5">-->
+<!--                      <div class="form-outline">-->
+<!--                        <input type="text" id="typeText" class="form-control form-control-lg"-->
+<!--                               value="123" size="1" minlength="3" maxlength="3" />-->
+<!--                        <label class="form-label" for="typeText">Cvv</label>-->
+<!--                      </div>-->
+<!--                    </div>-->
+<!--                  </div>-->
 
-                <!-- Price -->
-                <p class="text-start text-md-center">
-                  <strong>$17.99</strong>
-                </p>
-                <!-- Price -->
+<!--                  <p class="mb-5">Lorem ipsum dolor sit amet consectetur, adipisicing elit <a-->
+<!--                          href="#!">obcaecati sapiente</a>.</p>-->
+                  <br>
+                  <button type="button" class="btn btn-primary btn-block btn-lg">Thanh toán</button>
+
+                  <h5 class="fw-bold mb-5" style="position: absolute; bottom: 0;right: 10px">
+                    <a href="#!">Tiếp tục mua hàng -></a>
+                  </h5>
+
+                </form>
+
               </div>
-            </div>
-            <!-- Single item -->
-          </div>
-        </div>
-        <div class="card mb-4">
-          <div class="card-body">
-            <p><strong>Expected shipping delivery</strong></p>
-            <p class="mb-0">12.10.2020 - 14.10.2020</p>
-          </div>
-        </div>
-        <div class="card mb-4 mb-lg-0">
-          <div class="card-body">
-            <p><strong>We accept</strong></p>
-            <img class="me-2" width="45px"
-                 src="https://mdbcdn.b-cdn.net/wp-content/plugins/woocommerce-gateway-stripe/assets/images/visa.svg"
-                 alt="Visa" />
-            <img class="me-2" width="45px"
-                 src="https://mdbcdn.b-cdn.net/wp-content/plugins/woocommerce-gateway-stripe/assets/images/amex.svg"
-                 alt="American Express" />
-            <img class="me-2" width="45px"
-                 src="https://mdbcdn.b-cdn.net/wp-content/plugins/woocommerce-gateway-stripe/assets/images/mastercard.svg"
-                 alt="Mastercard" />
-            <img class="me-2" width="45px"
-                 src="https://mdbcdn.b-cdn.net/wp-content/plugins/woocommerce/includes/gateways/paypal/assets/images/paypal.webp"
-                 alt="PayPal acceptance mark" />
-          </div>
-        </div>
-      </div>
-      <div class="col-md-4">
-        <div class="card mb-4">
-          <div class="card-header py-3">
-            <h5 class="mb-0">Summary</h5>
-          </div>
-          <div class="card-body">
-            <ul class="list-group list-group-flush">
-              <li
-                      class="list-group-item d-flex justify-content-between align-items-center border-0 px-0 pb-0">
-                Products
-                <span>$53.98</span>
-              </li>
-              <li class="list-group-item d-flex justify-content-between align-items-center px-0">
-                Shipping
-                <span>Gratis</span>
-              </li>
-              <li
-                      class="list-group-item d-flex justify-content-between align-items-center border-0 px-0 mb-3">
-                <div>
-                  <strong>Total amount</strong>
-                  <strong>
-                    <p class="mb-0">(including VAT)</p>
-                  </strong>
-                </div>
-                <span><strong>$53.98</strong></span>
-              </li>
-            </ul>
 
-            <button type="button" class="btn btn-primary btn-lg btn-block">
-              Go to checkout
-            </button>
+
+<!--              Thanh toán thẻ -->
+<!--              <div class="col-lg-6 px-5 py-4">-->
+
+<!--                <div class="card bg-primary text-white rounded-3">-->
+<!--                  <div class="card-body">-->
+<!--                    <div class="d-flex justify-content-between align-items-center mb-4">-->
+<!--                      <h5 class="mb-0">Card details</h5>-->
+<!--                      <img src="https://mdbcdn.b-cdn.net/img/Photos/Avatars/avatar-6.webp"-->
+<!--                           class="img-fluid rounded-3" style="width: 45px;" alt="Avatar">-->
+<!--                    </div>-->
+
+<!--                    <p class="small mb-2">Card type</p>-->
+<!--                    <a href="#!" type="submit" class="text-white"><i-->
+<!--                            class="fab fa-cc-mastercard fa-2x me-2"></i></a>-->
+<!--                    <a href="#!" type="submit" class="text-white"><i-->
+<!--                            class="fab fa-cc-visa fa-2x me-2"></i></a>-->
+<!--                    <a href="#!" type="submit" class="text-white"><i-->
+<!--                            class="fab fa-cc-amex fa-2x me-2"></i></a>-->
+<!--                    <a href="#!" type="submit" class="text-white"><i class="fab fa-cc-paypal fa-2x"></i></a>-->
+
+<!--                    <form class="mt-4">-->
+<!--                      <div class="form-outline form-white mb-4">-->
+<!--                        <input type="text" id="typeName" class="form-control form-control-lg" siez="17"-->
+<!--                               placeholder="Cardholder's Name" />-->
+<!--                        <label class="form-label" for="typeName">Cardholder's Name</label>-->
+<!--                      </div>-->
+
+<!--                      <div class="form-outline form-white mb-4">-->
+<!--                        <input type="text" id="typeText" class="form-control form-control-lg" siez="17"-->
+<!--                               placeholder="1234 5678 9012 3457" minlength="19" maxlength="19" />-->
+<!--                        <label class="form-label" for="typeText">Card Number</label>-->
+<!--                      </div>-->
+
+<!--                      <div class="row mb-4">-->
+<!--                        <div class="col-md-6">-->
+<!--                          <div class="form-outline form-white">-->
+<!--                            <input type="text" id="typeExp" class="form-control form-control-lg"-->
+<!--                                   placeholder="MM/YYYY" size="7" id="exp" minlength="7" maxlength="7" />-->
+<!--                            <label class="form-label" for="typeExp">Expiration</label>-->
+<!--                          </div>-->
+<!--                        </div>-->
+<!--                        <div class="col-md-6">-->
+<!--                          <div class="form-outline form-white">-->
+<!--                            <input type="password" id="typeText" class="form-control form-control-lg"-->
+<!--                                   placeholder="&#9679;&#9679;&#9679;" size="1" minlength="3" maxlength="3" />-->
+<!--                            <label class="form-label" for="typeText">Cvv</label>-->
+<!--                          </div>-->
+<!--                        </div>-->
+<!--                      </div>-->
+
+<!--                    </form>-->
+
+<!--                    <hr class="my-4">-->
+
+<!--                    <div class="d-flex justify-content-between">-->
+<!--                      <p class="mb-2">Subtotal</p>-->
+<!--                      <p class="mb-2">$4798.00</p>-->
+<!--                    </div>-->
+
+<!--                    <div class="d-flex justify-content-between">-->
+<!--                      <p class="mb-2">Shipping</p>-->
+<!--                      <p class="mb-2">$20.00</p>-->
+<!--                    </div>-->
+
+<!--                    <div class="d-flex justify-content-between mb-4">-->
+<!--                      <p class="mb-2">Total(Incl. taxes)</p>-->
+<!--                      <p class="mb-2">$4818.00</p>-->
+<!--                    </div>-->
+
+<!--                    <button type="button" class="btn btn-info btn-block btn-lg">-->
+<!--                      <div class="d-flex justify-content-between">-->
+<!--                        <span>$4818.00</span>-->
+<!--                        <span>Checkout <i class="fas fa-long-arrow-alt-right ms-2"></i></span>-->
+<!--                      </div>-->
+<!--                    </button>-->
+
+<!--                  </div>-->
+<!--                </div>-->
+
+<!--              </div>-->
+
+            </div>
+
           </div>
         </div>
       </div>
